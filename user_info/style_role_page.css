@@ -45,6 +45,7 @@ body, html {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    font-family: 'Gill Sans MT', sans-serif; /* Set font family to Gill Sans MT */
     font-size: 18px;
 }
 
