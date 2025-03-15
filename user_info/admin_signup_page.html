@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Signup</title>
+    <link rel="stylesheet" href="style_admin_signup_page.css">
+    <script src="admin_pop-up.js" defer></script>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>SOE E-PORTFOLIO</h1>
+        <form id="admin-signup-form">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" placeholder="Enter your First Name" required>
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Enter your Last Name" required>
+
+            <label for="id-number">ID Number (9 digits):</label>
+            <input type="text" id="id-number" name="id-number" placeholder="e.g YEAR-0000" required>
+
+            <label for="gender">Gender (Optional):</label>
+            <div class="gender-options">
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your school email address" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="button" onclick="showPopup()">Confirm</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Log-in</a></p>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p>Note: Choosing your Role as an Admin will make you grant access permission for the user roles, oversee the system and observe students’ academic and extracurricular portfolios. (This cannot be changed easily, please recheck your credentials)</p>
+            <button onclick="closePopup()">Back to Sign-in</button>
+            <button onclick="submitForm()">Confirm</button>
+        </div>
+    </div>
+</body>
+</html>
