@@ -58,3 +58,16 @@ body, html {
     text-align: center;
     font-size: 18px; /* Set font size for the disclaimer text */
 }
+
+
+.links a {
+    color: #0044cc;
+    text-decoration: none;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Add this CSS rule to show underline on hover */
+.links a:hover {
+    text-decoration: underline;
+}

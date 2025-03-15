@@ -77,34 +77,46 @@ select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     height: 20px; /* Adjust the height of the input fields and select elements */
 }
 
 .radio-group {
     display: flex;
     align-items: center;
+    margin-top: 10px;
+    
 }
 
 .radio-group input[type="radio"] {
-    margin-right: 5px;
+    margin-right: 10px;
+    transform: scale(1.5);
 }
 
 .radio-group label {
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
-.form-footer {
+.form-footer a{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
     width: 100%;
+    text-decoration: none;
+    color: #0044cc;
 }
 
-.login-link {
-    color: #0044cc;
-    text-decoration: none;
+.form-footer {
+    display: flex;
+    justify-content: center; /* Center the contents horizontally */
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
 }
 
 .confirm-button {
@@ -157,3 +169,19 @@ select {
     width: 90%;
     height: 40px;
 }
+
+/* Adjust the position of the email form group */
+#email-form-group {
+    margin-left: 20px; /* Adjust the left margin to move the email form group to the right */
+}
+
+/* Style for the info icon */
+.info-icon {
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 2px;
+    color: black;
+    position: relative;
+    
+}
+
