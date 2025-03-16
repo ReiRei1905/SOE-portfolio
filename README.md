@@ -1,7 +1,4 @@
-# SOE-Portfolio
-
-## Overview
-SOE-Portfolio is a web application designed to manage student and faculty sign-ups, with an admin approval system. This project includes various pages such as student sign-up, faculty sign-up, and a data privacy policy page.
+# SOE-Portfolio current progress:
 
 ## Features
 - Student and Faculty sign-up forms
