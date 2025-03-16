@@ -1,7 +1,14 @@
-/* Admin Confimartion */
+/* Student Confirmation */
 function showPopup() {
     document.getElementById('popup').style.display = 'block';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.confirm-button').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent form submission
+        document.getElementById('confirmation-popup').style.display = 'flex';
+    });
+});
 
 function closePopup() {
     document.getElementById('popup').style.display = 'none';
@@ -18,8 +25,5 @@ function redirectToLogin() {
 }
 
 function redirectToSignup() {
-    window.location.href = 'admin_signup_page.html';
+    window.location.href = 'student_signup_page.html';
 }
-
-
-

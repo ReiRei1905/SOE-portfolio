@@ -9,42 +9,63 @@
 </head>
 <body>
     <div class="signup-container">
-        <h1>SOE E-PORTFOLIO</h1>
+        <a href="role_page.html" class="back-arrow">&#x2190;</a> <!-- Update the href to point to the role page -->
+        <h1>SOE E-PORTFOLIO SIGNING-UP</h1>
         <form id="admin-signup-form">
-            <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" name="first-name" placeholder="Enter your First Name" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first-name" placeholder="Enter your First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="last-name" placeholder="Enter your Last Name" required>
+                </div>
+            </div>
 
-            <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name" name="last-name" placeholder="Enter your Last Name" required>
-
-            <label for="id-number">ID Number (9 digits):</label>
-            <input type="text" id="id-number" name="id-number" placeholder="e.g YEAR-0000" required>
-
-            <label for="gender">Gender (Optional):</label>
-            <div class="gender-options">
-                <input type="radio" id="male" name="gender" value="male">
-                <label for="male">Male</label>
-                <input type="radio" id="female" name="gender" value="female">
-                <label for="female">Female</label>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id-number">ID Number (9 digits):</label>
+                    <input type="text" id="id-number" name="id-number" placeholder="e.g YEAR-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender (Optional):</label>
+                    <div class="gender-options">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                </div>
             </div>
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter your school email address" required>
 
-            <label for="password">Password:</label>
+            <label for="password">Password: <span class="info-icon" title="Password Checking Policy:&#10;- Minimum of 12 characters&#10;Contains:&#10;- 1 Uppercase, Lowercase, Number, Special character, and EXCEPT exclamation point.">&#9432;</span></label></label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
             <button type="button" onclick="showPopup()">Confirm</button>
         </form>
-        <p>Already have an account? <a href="login.html">Log-in</a></p>
+        <a href="login_page.html" class="login-link">Already have an account? Log-in</a> <!-- Update the href to point to the login page -->
     </div>
 
     <div id="popup" class="popup">
         <div class="popup-content">
-            <p>Note: Choosing your Role as an Admin will make you grant access permission for the user roles, oversee the system and observe students’ academic and extracurricular portfolios. (This cannot be changed easily, please recheck your credentials)</p>
+            <p>Note: Choosing your Role as an Admin will make you grant access permission for the user roles, oversee the system and address user queries. (This cannot be changed easily, please recheck your credentials)</p>
             <button onclick="closePopup()">Back to Sign-in</button>
             <button onclick="submitForm()">Confirm</button>
         </div>
     </div>
+
+    <div id="confirmation-popup" class="popup">
+        <div class="popup-content">
+            <img src="images/administrator.png" alt="Confirmation Icon">
+            <p>Your account is pending approval by the owner of this system. You will receive an email once your account is approved.</p>
+            <button onclick="redirectToLogin()">Back to Log-in</button>
+            <button onclick="redirectToSignup()">Back to Sign-Up</button>
+        </div>
+    </div>
+    
 </body>
 </html>

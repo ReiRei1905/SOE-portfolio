@@ -26,3 +26,25 @@ function confirmPopup() {
     // Add your confirmation logic here
     closePopup();
 }
+
+/*function showPopup() {
+    document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+}
+
+function submitForm() {
+    // Assuming form validation and submission logic here
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('confirmation-popup').style.display = 'block';
+}
+
+function redirectToLogin() {
+    window.location.href = 'login_page.html';
+}
+
+function redirectToSignup() {
+    window.location.href = 'faculty_signup_page.html';
+}*/
