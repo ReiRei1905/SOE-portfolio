@@ -1,7 +1,3 @@
-function showPopup() {
-    document.getElementById('popup').style.display = 'block';
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.confirm-button').addEventListener('click', function(event) {
         event.preventDefault(); // Prevent form submission
@@ -10,13 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-}
-
-function submitForm() {
-    // Assuming form validation and submission logic here
-    document.getElementById('popup').style.display = 'none';
-    document.getElementById('confirmation-popup').style.display = 'block';
+    document.getElementById('confirmation-popup').style.display = 'none';
 }
 
 function redirectToLogin() {

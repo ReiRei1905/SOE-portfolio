@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="role_page.html" class="back-arrow">&#x2190;</a> <!-- Update the href to point to the role page -->
+        <a href="role_page.html" class="back-arrow">&#x2190;</a>
         <h1>SOE-PORTFOLIO SIGNING UP</h1>
         <form>
             <div class="form-row">
@@ -32,8 +32,8 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="role">Role:</label>
-                    <select id="role" onchange="showPopup(this.value)">
-                        
+                    <select id="role">
+                        <option value="" selected disabled>Select your role</option>
                         <option value="professor">Professor</option>
                         <option value="program_director">Program Director</option>
                         <option value="executive_director">Executive Director</option>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="form-footer">
-                <a href="login_page.html" class="login-link">Already have an account? Log-in</a> <!-- Update the href to point to the login page -->
+                <a href="login_page.html" class="login-link">Already have an account? Log-in</a>
                 <button type="submit" class="confirm-button">Confirm</button>
             </div>
         </form>
@@ -73,7 +73,7 @@
     <div id="popup-message" class="popup-message">
         <p id="popup-text"></p>
         <button onclick="closePopup()">Back to Sign-in</button>
-        <button onclick="confirmPopup()">Confirm</button>
+        <button onclick="closePopup()">Confirm</button>
     </div>
 
     <div id="confirmation-popup" class="popup">
