@@ -1,18 +1,22 @@
 function toggleChart() {
     const pieChart = document.getElementById('pieChart');
+    const mostUploads = document.getElementById('mostUploads');
     const barChart = document.getElementById('barChart');
     const arrowRight = document.getElementById('arrowRight');
     const arrowLeft = document.getElementById('arrowLeft');
-    if (pieChart.style.display === 'none') {
-        pieChart.style.display = 'block';
-        barChart.style.display = 'none';
-        arrowRight.style.display = 'block';
-        arrowLeft.style.display = 'none';
-    } else {
+
+    if (pieChart.style.display === 'block') {
         pieChart.style.display = 'none';
+        mostUploads.style.display = 'none';
         barChart.style.display = 'block';
         arrowRight.style.display = 'none';
         arrowLeft.style.display = 'block';
+    } else {
+        pieChart.style.display = 'block';
+        mostUploads.style.display = 'block';
+        barChart.style.display = 'none';
+        arrowRight.style.display = 'block';
+        arrowLeft.style.display = 'none';
     }
 }
 

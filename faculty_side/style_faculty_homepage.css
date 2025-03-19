@@ -31,7 +31,7 @@ footer a {
 }
 
 #sidebar {
-    background-color: #000000;
+    background-color: #4a4a4a;
     color: #ffffff;
     padding: 1rem;
     position: fixed;
@@ -45,6 +45,24 @@ footer a {
 
 #sidebar.active {
     transform: translateX(0);
+}
+
+#sidebar nav {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between links */
+}
+
+#sidebar nav a {
+    color: #ffffff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.25rem; /* Font size */
+    padding: 0.75rem 1rem; /* Padding for links */
+    /*background-color: #6c757d; /* Background color for links */
+    border-radius: 0.5rem; /* Rounded corners */
+    text-align: center; /* Center text */
+    transition: background-color 0.3s ease; /* Transition for background color */
 }
 
 #mainContent {
@@ -94,10 +112,19 @@ footer a {
     margin-top: 0.5rem;
 }
 
-#arrowRight, #arrowLeft {
+#arrowLeft {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.25rem;
     cursor: pointer;
+}
+
+#arrowRight {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    cursor: pointer;
+
 }

@@ -51,7 +51,7 @@
         </div>
         <div class="bg-white shadow-md rounded-lg p-4 relative">
             <div id="chartsContainer" class="flex justify-between items-center">
-                <div id="pieChart" class="flex flex-col items-center w-1/2">
+                <div id="pieChart" class="flex flex-col items-center w-1/2" style="display: block;">
                     <h3 class="text-center font-bold">Participation per Program</h3>
                     <div class="flex justify-center items-center h-48">
                         <div class="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
@@ -68,7 +68,7 @@
                         </p>
                     </div>
                 </div>
-                <div id="mostUploads" class="flex flex-col items-center w-1/2">
+                <div id="mostUploads" class="flex flex-col items-center w-1/2" style="display: block;">
                     <h3 class="text-center font-bold">Most Uploads</h3>
                     <div class="flex justify-center items-center h-48">
                         <div class="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
@@ -85,8 +85,25 @@
                         </p>
                     </div>
                 </div>
+                <div id="barChart" class="flex flex-col items-center w-full" style="display: none;">
+                    <h3 class="text-center font-bold">Participation per Year</h3>
+                    <div class="flex justify-center items-center h-48">
+                        <div class="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span class="text-sm">Bar Graph</span>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <p>
+                            Year 1 30%
+                            <span class="text-blue-500">|</span>
+                            Year 2 40%
+                            <span class="text-yellow-500">|</span>
+                            Year 3 30%
+                        </p>
+                    </div>
+                </div>
             </div>
-            <i id="arrowRight" class="fas fa-arrow-right absolute right-4 top-1/2 transform -translate-y-1/2 text-xl cursor-pointer" onclick="toggleChart()"></i>
+            <i id="arrowRight" class="fas fa-arrow-right absolute right-4 top-1/2 transform -translate-y-1/2 text-xl cursor-pointer" onclick="toggleChart()" style="display: block;"></i>
             <i id="arrowLeft" class="fas fa-arrow-left absolute left-4 top-1/2 transform -translate-y-1/2 text-xl cursor-pointer" onclick="toggleChart()" style="display: none;"></i>
         </div>
     </div>
