@@ -39,6 +39,13 @@
             sidebar.classList.toggle('hidden');
             mainContent.classList.toggle('ml-64');
         }
+
+        // Added this event listener to set the top property of the sidebar dynamically
+        window.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('header');
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.top = `${header.offsetHeight}px`;
+        });
     </script>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
@@ -67,7 +74,8 @@
     </div>
 </header>
 <main class="container mx-auto mt-4 px-4 flex-1 flex">
-    <div id="sidebar" class="bg-black text-white p-4 fixed top-24 left-0 w-64 h-full z-50 hidden">
+    <!-- Adjusted the top property of the sidebar dynamically -->
+    <div id="sidebar" class="bg-black text-white p-4 fixed left-0 w-64 h-full z-50 hidden">
         <nav class="flex flex-col space-y-4 mt-4">
             <a class="text-lg" href="#">Programs</a>
             <a class="text-lg" href="#">Classes</a>
