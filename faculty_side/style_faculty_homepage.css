@@ -1,0 +1,103 @@
+body {
+    background-color: #f7fafc;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+footer {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+}
+
+footer a {
+    color: #93c5fd;
+}
+
+#sidebar {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 1rem;
+    position: fixed;
+    left: 0;
+    width: 16rem;
+    height: 100%;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+#sidebar.active {
+    transform: translateX(0);
+}
+
+#mainContent {
+    transition: all 0.3s;
+    margin-left: 0;
+}
+
+#mainContent.shifted {
+    margin-left: 16rem;
+}
+
+#chartsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pieChart, #barChart, #mostUploads {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#pieChart .w-32, #barChart .w-32, #mostUploads .w-32 {
+    background-color: #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    width: 10rem;
+}
+
+#pieChart h3, #barChart h3, #mostUploads h3 {
+    font-weight: bold;
+    text-align: center;
+}
+
+#pieChart p, #barChart p, #mostUploads p {
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+#arrowRight, #arrowLeft {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    cursor: pointer;
+}

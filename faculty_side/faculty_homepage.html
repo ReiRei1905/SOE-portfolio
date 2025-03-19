@@ -3,50 +3,10 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>E-Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <script>
-        function toggleChart() {
-            const pieChart = document.getElementById('pieChart');
-            const barChart = document.getElementById('barChart');
-            const arrowRight = document.getElementById('arrowRight');
-            const arrowLeft = document.getElementById('arrowLeft');
-            if (pieChart.style.display === 'none') {
-                pieChart.style.display = 'block';
-                barChart.style.display = 'none';
-                arrowRight.style.display = 'block';
-                arrowLeft.style.display = 'none';
-            } else {
-                pieChart.style.display = 'none';
-                barChart.style.display = 'block';
-                arrowRight.style.display = 'none';
-                arrowLeft.style.display = 'block';
-            }
-        }
-
-        function goToOverviewPage() {
-            // Scroll to the top of the page
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function handleProfileClick() {
-            alert('Profile button clicked!');
-        }
-
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('mainContent');
-            sidebar.classList.toggle('hidden');
-            mainContent.classList.toggle('ml-64');
-        }
-
-        // Added this event listener to set the top property of the sidebar dynamically
-        window.addEventListener('DOMContentLoaded', () => {
-            const header = document.querySelector('header');
-            const sidebar = document.getElementById('sidebar');
-            sidebar.style.top = `${header.offsetHeight}px`;
-        });
-    </script>
+    <link href="style_faculty_homepage.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="faculty_homepage.js" defer></script>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
 <header class="bg-white shadow-md">
@@ -74,8 +34,7 @@
     </div>
 </header>
 <main class="container mx-auto mt-4 px-4 flex-1 flex">
-    <!-- Adjusted the top property of the sidebar dynamically -->
-    <div id="sidebar" class="bg-black text-white p-4 fixed left-0 w-64 h-full z-50 hidden">
+    <div id="sidebar" class="bg-black text-white p-4 fixed left-0 w-64 h-full z-50">
         <nav class="flex flex-col space-y-4 mt-4">
             <a class="text-lg" href="#">Programs</a>
             <a class="text-lg" href="#">Classes</a>
@@ -91,62 +50,39 @@
             </div>
         </div>
         <div class="bg-white shadow-md rounded-lg p-4 relative">
-            <div id="pieChart">
-                <div class="flex justify-between items-center">
-                    <div class="w-1/2">
-                        <h3 class="text-center font-bold">Participation per Program</h3>
-                        <div class="flex justify-center items-center h-48">
-                            <div class="w-42 h-42 bg-gray-200 rounded-full flex items-center justify-center">
-                                <span class="text-sm">Pie Chart</span>
-                            </div>
-                        </div>
-                        <div class="text-center mt-2">
-                            <p>
-                                CPE 75%
-                                <span class="text-blue-500">|</span>
-                                ECE 10%
-                                <span class="text-yellow-500">|</span>
-                                CE 15%
-                            </p>
+            <div id="chartsContainer" class="flex justify-between items-center">
+                <div id="pieChart" class="flex flex-col items-center w-1/2">
+                    <h3 class="text-center font-bold">Participation per Program</h3>
+                    <div class="flex justify-center items-center h-48">
+                        <div class="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span class="text-sm">Pie Chart</span>
                         </div>
                     </div>
-                    <div class="w-1/2">
-                        <h3 class="text-center font-bold">Most Uploads</h3>
-                        <div class="flex justify-center items-center h-48">
-                            <div class="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
-                                <span class="text-sm">Bar Graph</span>
-                            </div>
-                        </div>
-                        <div class="text-center mt-2">
-                            <p>
-                                Assessments 50%
-                                <span class="text-green-500">|</span>
-                                Projects 40%
-                                <span class="text-purple-500">|</span>
-                                Certificates 10%
-                            </p>
-                        </div>
+                    <div class="text-center mt-2">
+                        <p>
+                            CPE 75%
+                            <span class="text-blue-500">|</span>
+                            ECE 10%
+                            <span class="text-yellow-500">|</span>
+                            CE 15%
+                        </p>
                     </div>
                 </div>
-            </div>
-            <div id="barChart" style="display: none;">
-                <div class="flex justify-center items-center">
-                    <div class="w-1/2">
-                        <h3 class="text-center font-bold">Participation per Year</h3>
-                        <div class="flex justify-center items-center h-48">
-                            <div class="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
-                                <span class="text-sm">Bar Graph</span>
-                            </div>
+                <div id="mostUploads" class="flex flex-col items-center w-1/2">
+                    <h3 class="text-center font-bold">Most Uploads</h3>
+                    <div class="flex justify-center items-center h-48">
+                        <div class="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span class="text-sm">Bar Graph</span>
                         </div>
-                        <div class="text-center mt-2">
-                            <p>
-                                Year 1 30%
-                                <span class="text-blue-500">|</span>
-                                Year 2 40%
-                                <span class="text-yellow-500">|</span>
-                                Year 3 30%
-                            </p>
-                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <p>
+                            Assessments 50%
+                            <span class="text-green-500">|</span>
+                            Projects 40%
+                            <span class="text-purple-500">|</span>
+                            Certificates 10%
+                        </p>
                     </div>
                 </div>
             </div>
@@ -159,7 +95,7 @@
     <div class="container mx-auto px-4">
         <p class="text-left">
             Copyright © 2024 |
-            <a class="text-blue-300" href="#">JRC.inc.</a>q
+            <a class="text-blue-300" href="#">JRC.inc.</a>
             All rights reserved
         </p>
     </div>
