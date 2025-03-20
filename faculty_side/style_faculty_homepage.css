@@ -24,7 +24,7 @@ footer {
     color: #ffffff;
     width: 100%;
     transition: all 0.3s;
-    z-index: 10; /* Ensure the footer is above other elements */
+    z-index: 70; /* Ensure the footer is above other elements */
 
     /*position: relative;
     bottom: 0;
@@ -60,7 +60,7 @@ footer a {
 }
 
 #sidebar nav {
-    margin-top: 70px;
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
     gap: 3rem; /* Space between links */
