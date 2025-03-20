@@ -34,6 +34,7 @@ function toggleSidebar() {
     const mainContent = document.getElementById('mainContent');
     sidebar.classList.toggle('active');
     mainContent.classList.toggle('shifted');
+
 }
 
 // Added this event listener to set the top property of the sidebar dynamically
@@ -42,3 +43,4 @@ window.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
     sidebar.style.top = `${header.offsetHeight}px`;
 });
+
