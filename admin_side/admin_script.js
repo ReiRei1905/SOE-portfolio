@@ -44,3 +44,30 @@ window.addEventListener('DOMContentLoaded', () => {
     sidebar.style.top = `${header.offsetHeight}px`;
 });
 
+function toggleDropdown(button) {
+    var dropdownContent = button.nextElementSibling;
+    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+}
+
+function checkUserInfo(userId) {
+    // Implement the logic to check user info
+    alert('Check User Info for user ID: ' + userId);
+}
+
+function removeUser(userId) {
+    // Implement the logic to remove user
+    alert('Remove User with user ID: ' + userId);
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === 'block') {
+                openDropdown.style.display = 'none';
+            }
+        }
+    }
+}
