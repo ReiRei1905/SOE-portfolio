@@ -29,6 +29,10 @@ footer {
     z-index: 70; /* Ensure the footer is above other elements */
     padding: 1rem 0;
     bottom: 0%;
+    margin-top: 1rem;
+
+
+    
     /*position: relative;
     bottom: 0;
     width: 100vw;
@@ -105,8 +109,6 @@ td img{
 }
 
 
-
-
 table, th, td {
     border-collapse: collapse;
     padding: 1rem;
@@ -129,6 +131,7 @@ thead th{
     top: 0%;
     left: 0%;
     background-color: lightgray;
+    z-index: 10;
 
 
 }
@@ -193,6 +196,7 @@ thead th{
 .dropdown {
     position: relative;
     display: inline-block;
+    
 }
 
 .dropbtn {
@@ -223,6 +227,213 @@ thead th{
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+}
+
+.dropdown-ol {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 1000;
+    right: 0; /* Align the dropdown to the right */
+    min-width: 160px; /* Ensure the dropdown has a minimum width */
+    overflow: visible; /* Ensure the dropdown content is visible */
+}
+
+.dropdown-popup{
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+/*.hidden {
+    display: none;
+}
+
+#userDetailView {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.role-button, .approve-button, .reject-button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.role-button {
+    background-color: #f0f0f0;
+}
+
+.approve-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.reject-button {
+    background-color: #f44336;
+    color: white;
+}*/
+
+
+    
+
+#userDetailModal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(75, 85, 99, 0.5); /* bg-gray-600 bg-opacity-50 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Add the hidden class to hide the modal initially */
+    display: none;
+    z-index: 50;
+    
+}
+
+
+#userDetailModal .modal-content {
+    background-color: white; /* bg-white */
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    width: 700px; /* Adjust the width */
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #000; /* Add a black border */
+    
+    
+}
+
+#userDetailModal .modal-header {
+    display: flex; /* flex */
+    justify-content: space-between; /* justify-between */
+    align-items: center; /* items-center */
+    width: 100%;
+    margin-bottom: 1rem; /* Add some space below the header */
+    
+}
+
+#userDetailModal .modal-header h2 {
+    font-size: 1.5rem; /* text-lg */
+    font-weight: bold; /* font-bold */
+    
+}
+
+#userDetailModal .modal-header button {
+    color: rgba(107, 114, 128, 1); /* text-gray-500 */
+    font-size: 1.5rem; /* Increase the font size */
+    margin-bottom: 1rem; /* Add some space above the button */
+}
+
+#userDetailModal .modal-header button:hover {
+    color: rgba(55, 65, 81, 1); /* hover:text-gray-700 */
+}
+
+#userDetailModal .modal-body {
+    display: flex; /* flex */
+    width: 100%;
+    margin-bottom: 1rem; /* Add some space below the body */
+    
+}
+
+#userDetailModal .modal-body .left-section {
+    width: 100%; /* Adjust the width */
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    padding-right: 1rem; /* Add some space to the right */
+}
+
+
+#userDetailModal .modal-body .left-section h3 {
+    font-size: 1.25rem; /* text-xl */
+    margin-bottom: 0.5rem; /* Add some space below the name */
+}
+
+#userDetailModal .modal-body .left-section p {
+    font-size: 1.125rem; /* text-sm */
+    margin-bottom: 0.5rem; /* Add some space below the text */
+}
+
+#userDetailModal .modal-body .right-section {
+    width: 70%; /* Adjust the width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 1rem;
+    margin-top: -2rem; /* Move the right section up */
+    
+}
+
+#userDetailModal .modal-body .right-section h3 {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: bold; /* font-bold */
+    margin-bottom: 1rem; /* Add some space below the title */
+    
+}
+
+#userDetailModal .modal-body .right-section .role-buttons {
+    display: flex; /* flex */
+    flex-direction: column; /* flex-col */
+    gap: 0.5rem; /* space-y-2 */
+    width: 100%; /* Make buttons full width */
+    
+}
+
+#userDetailModal .modal-body .right-section .role-buttons button {
+    background-color: #e5e7eb; /* bg-gray-200 */
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+    width: 100%; /* Make buttons full width */
+    text-align: center; 
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Add space between icon and text */
+}
+
+#userDetailModal .modal-body .right-section .role-buttons button:hover {
+    background-color: #d1d5db; /* hover:bg-gray-300 */
+}
+
+
+
+#userDetailModal .modal-body .right-section .action-buttons {
+    display: flex; /* flex */
+    gap: 1rem; /* space-x-4 */
+    margin-top: 1rem; /* mt-4 */
+}
+
+.role-button, .approve-button, .reject-button {
+    padding: 0.625rem; /* py-2 px-4 */
+    border: none;
+    border-radius: 0.25rem; /* rounded */
+    cursor: pointer;
+}
+
+
+.approve-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.approve-button:hover {
+    background-color: lightgreen;
+}
+
+.reject-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.reject-button:hover {
+    background-color: lightcoral;
 }
 
 

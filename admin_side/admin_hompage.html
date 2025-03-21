@@ -91,8 +91,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(1)">Remove User</a>
+                                        <a href="#" onclick="checkUserInfo(2)">Check User Info</a>
+                                        <a href="#" onclick="removeUser(2)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -107,8 +107,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(1)">Remove User</a>
+                                        <a href="#" onclick="checkUserInfo(3)">Check User Info</a>
+                                        <a href="#" onclick="removeUser(3)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -123,8 +123,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(1)">Remove User</a>
+                                        <a href="#" onclick="checkUserInfo(4)">Check User Info</a>
+                                        <a href="#" onclick="removeUser(4)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -139,8 +139,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(1)">Remove User</a>
+                                        <a href="#" onclick="checkUserInfo(5)">Check User Info</a>
+                                        <a href="#" onclick="removeUser(5)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -155,8 +155,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(1)">Remove User</a>
+                                        <a href="#" onclick="checkUserInfo(6)">Check User Info</a>
+                                        <a href="#" onclick="removeUser(6)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -171,8 +171,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(1)">Remove User</a>
+                                        <a href="#" onclick="checkUserInfo(7)">Check User Info</a>
+                                        <a href="#" onclick="removeUser(7)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -187,8 +187,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(1)">Remove User</a>
+                                        <a href="#" onclick="checkUserInfo(8)">Check User Info</a>
+                                        <a href="#" onclick="removeUser(8)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -203,8 +203,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(1)">Remove User</a>
+                                        <a href="#" onclick="checkUserInfo(9)">Check User Info</a>
+                                        <a href="#" onclick="removeUser(9)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -219,7 +219,7 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(1)">Check User Info</a>
+                                        <a href="#" onclick="checkUserInfo(10)">Check User Info</a>
                                         <a href="#" onclick="removeUser(1)">Remove User</a>
                                     </div>
                                 </div>
@@ -229,10 +229,46 @@
                 </table>
             </section>
         </div>
+                <!-- ...existing code... -->
+        <div id="userDetailModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>User Details</h2>
+                    <button onclick="closeUserDetailModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="left-section">
+                        <h3 id="userName"></h3>
+                        <p id="userId"></p>
+                        <p id="userEmail"></p>
+                        <p id="userProgram"></p>
+                        <p id="userYearEnroll"></p>
+                        <p id="userIdNumber"></p>
+                        <p id="userSignUpDate"></p>
+                    </div>
+                    <div class="right-section">
+                        <h3>Account Access</h3>
+                        <div class="role-buttons">
+                            <button class="role-button" onclick="setUserRole('Executive Director')">Executive Director</button>
+                            <button class="role-button" onclick="setUserRole('Program Directors')">Program Directors</button>
+                            <button class="role-button" onclick="setUserRole('Professors')">Professors</button>
+                            <button class="role-button" onclick="setUserRole('Students')">Students</button>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="approve-button" onclick="approveUser()">Approve</button>
+                            <button class="reject-button" onclick="rejectUser()">Reject</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ...existing code... -->
+    
+        
         <!--End of Content-->
     </div>
 </main>
-<footer class="bg-blue-700 text-white py-4 mt-4 w-full">
+<footer class>
     <div class="container mx-auto px-4">
         <p class="text-left">
             Copyright © 2024 |
