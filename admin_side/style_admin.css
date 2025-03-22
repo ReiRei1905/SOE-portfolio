@@ -179,6 +179,13 @@ thead th{
     
 }
 
+.role-button.selected {
+    background-color: #e5e7eb;
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .status.verified {
     background-color: #007bff; /* Blue background for Verified */
     border: 1px solid #007bff;
@@ -395,6 +402,7 @@ thead th{
     text-align: center; 
     display: flex;
     align-items: center;
+    justify-content: center; /* Center text horizontally */
     gap: 0.5rem; /* Add space between icon and text */
 }
 

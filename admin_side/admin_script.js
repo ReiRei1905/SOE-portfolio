@@ -1,25 +1,3 @@
-function toggleChart() {
-    const pieChart = document.getElementById('pieChart');
-    const mostUploads = document.getElementById('mostUploads');
-    const barChart = document.getElementById('barChart');
-    const arrowRight = document.getElementById('arrowRight');
-    const arrowLeft = document.getElementById('arrowLeft');
-
-    if (pieChart.style.display === 'block') {
-        pieChart.style.display = 'none';
-        mostUploads.style.display = 'none';
-        barChart.style.display = 'block';
-        arrowRight.style.display = 'none';
-        arrowLeft.style.display = 'block';
-    } else {
-        pieChart.style.display = 'block';
-        mostUploads.style.display = 'block';
-        barChart.style.display = 'none';
-        arrowRight.style.display = 'block';
-        arrowLeft.style.display = 'none';
-    }
-}
-
 function goToOverviewPage() {
     // Scroll to the top of the page
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -215,15 +193,70 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function setUserRole(role) {
     console.log(`User role set to: ${role}`);
-    // Implement role setting logic here
+    // Implement role setting logic here when applying database
+
 }
 
-function approveUser() {
+/* Assuming users already signed up */
+function toggleRole(button) {
+    
+    button.classList.toggle('selected');
+}
+
+function approveUser(userId) {
     console.log('User approved');
-    // Implement user approval logic here
+    // Implement user approval logic here when applying database
+    const user = users.find(user => user.id === userId);
+    if (user) {
+        user.status = 'Verified';
+        updateUserStatus(userId, 'Verified');
+        closeUserDetailModal(); // Move this line after the status update
+    }
 }
 
-function rejectUser() {
+function rejectUser(userId) {
     console.log('User rejected');
-    // Implement user rejection logic here
+    // Implement user rejection logic here when applying database
+    const user = users.find(user => user.id === userId);
+    if (user) {
+        user.status = 'Not Verified';
+        updateUserStatus(userId, 'Not Verified');
+        closeUserDetailModal(); // Move this line after the status update
+    }
 }
+
+function updateUserStatus(userId, status) {
+    const userRow = document.querySelector(`#userRow-${userId}`);
+    if (userRow) {
+        const statusElement = userRow.querySelector('.status');
+        if (statusElement) {
+            statusElement.innerText = status;
+            statusElement.classList.toggle('verified', status === 'Verified');
+            statusElement.classList.toggle('not-verified', status === 'Not Verified');
+        }
+    }
+}
+
+// Add event listener to role buttons and approve/reject buttons
+document.addEventListener('DOMContentLoaded', function() {
+    const roleButtons = document.querySelectorAll('.role-button');
+    roleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            toggleRole(button);
+        });
+    });
+
+    const approveButton = document.getElementById('approveButton');
+    const rejectButton = document.getElementById('rejectButton');
+    approveButton.addEventListener('click', function() {
+        const userId = parseInt(document.getElementById('userId').innerText.split(': ')[1]);
+        approveUser(userId);
+    });
+    rejectButton.addEventListener('click', function() {
+        const userId = parseInt(document.getElementById('userId').innerText.split(': ')[1]);
+        rejectUser(userId);
+    });
+});
+
+
+
