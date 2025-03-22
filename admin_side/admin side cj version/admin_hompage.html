@@ -38,9 +38,27 @@
         .dropdown.show .dropdown-content {
             display: block;
         }
+
+        .info-dropdown {
+            display: none;
+            position: fixed; /* Changed to fixed to cover the table */
+            background-color: white;
+            min-width: 300px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 100; /* Ensure it appears above other elements */
+            padding: 20px; /* Add some padding */
+            border-radius: 8px; /* Optional: rounded corners */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for centering */
+        }
+
+        .dropdown.show .info-dropdown {
+            display: block;
+        }
     </style>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen">
+<body class="bg-gray-100 flex flex-col min -h-screen">
 <header class="bg-white shadow-md">
     <div class="container mx-auto flex justify-between items-center py-2 px-4">
         <div class="flex items-center">
@@ -92,13 +110,24 @@
                 <button class="bg-blue-500 text-white rounded-full p-2 dropbtn" onclick="toggleDropdown(this)">
                     <i class="fas fa-filter"></i> <!-- Filter Icon -->
                 </button>
-                <div class="dropdown-content" style="top: -150%; left: 0;"> <!-- Adjusted position -->
+                <div class="dropdown-content" style="top: -150%; left: 0;">
                     <a href="#" onclick="filterUsers('all')">All Users</a>
-                    <a href="#" onclick="filterUsers('admin')">Admin</a>
+                    <a href="#" onclick=" filterUsers('admin')">Admin</a>
                     <a href="#" onclick="filterUsers('executiveDirector')">Executive Director</a>
                     <a href="#" onclick="filterUsers('programDirector')">Program Director</a>
                     <a href="#" onclick="filterUsers('professor')">Professor</a>
                     <a href="#" onclick="filterUsers('student')">Student</a>
+                </div>
+            </div>
+            <div class="dropdown ml-2">
+                <button class="bg-blue-500 text-white rounded-full p-2 dropbtn" onclick="toggleInfoDropdown(this)">
+                    <i class="fas fa-info-circle"></i> <!-- Info Icon -->
+                </button>
+                <div class="info-dropdown">
+                    <p><strong>Executive Director Role</strong><br>Has access to create programs in program management.<br>Assign Program Director in specific program.</p>
+                    <p><strong>Program Directors Role</strong><br>Has access to create courses, lists of student management.<br>Assign Professor in classes.</p>
+                    <p><strong>Professors Role</strong><br>Has access to create courses, classes and define required outputs for academic portfolios.<br>Authorization of students enrolled courses in their classes.</p>
+                    <p><strong>Students Role</strong><br>Has access to folder management and upload portfolios.</p>
                 </div>
             </div>
         </div>
@@ -177,8 +206,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUser Info(4)">Check User Info</a>
-                                        <a href="#" onclick="removeUser (4)">Remove User</a>
+                                        <a href="#" onclick="checkUser Info(4)">Check User Info </a>
+                                        <a href="#" onclick="removeUser  (4)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -193,8 +222,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUser Info(5)">Check User Info</a>
-                                        <a href="#" onclick="removeUser (5)">Remove User</a>
+                                        <a href="#" onclick="checkUser  Info(5)">Check User Info</a>
+                                        <a href="#" onclick="removeUser  (5)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -209,8 +238,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUser Info(6)">Check User Info</a>
-                                        <a href="#" onclick="removeUser (6)">Remove User</a>
+                                        <a href="#" onclick="checkUser  Info(6)">Check User Info</a>
+                                        <a href="#" onclick="removeUser  (6)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -225,8 +254,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUser Info(7)">Check User Info</a>
-                                        <a href="#" onclick="removeUser (7)">Remove User</a>
+                                        <a href="#" onclick="checkUser  Info(7)">Check User Info</a>
+                                        <a href="#" onclick="removeUser  (7)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -241,8 +270,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUser Info(8)">Check User Info</a>
-                                        <a href="#" onclick="removeUser (8)">Remove User</a>
+                                        <a href="#" onclick="checkUser  Info(8)">Check User Info</a>
+                                        <a href="#" onclick="removeUser  (8)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -257,8 +286,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUser Info(9)">Check User Info</a>
-                                        <a href="#" onclick="removeUser (9)">Remove User</a>
+                                        <a href="#" onclick="checkUser  Info(9)">Check User Info</a>
+                                        <a href="#" onclick="removeUser  (9)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -273,8 +302,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
-                                        <a href="#" onclick="checkUser Info(10)">Check User Info</a>
-                                        <a href="#" onclick="removeUser (10)">Remove User</a>
+                                        <a href="#" onclick="checkUser  Info(10)">Check User Info</a>
+                                        <a href="#" onclick="removeUser  (10)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -282,6 +311,7 @@
                     </tbody>
                 </table>
             </section>
+        ```html
         </div>
         <div id="userDetailModal" class="modal">
             <div class="modal-content">
@@ -332,23 +362,23 @@
         button.parentElement.classList.toggle("show");
     }
 
+    function toggleInfoDropdown(button) {
+        button.parentElement.classList.toggle("show");
+    }
+
     function filterUsers(role) {
-        // Implement filtering logic based on the selected role
         console.log("Filtering users by role:", role);
     }
 
     function checkUser Info(userId) {
-        // Implement logic to check user info
         console.log("Checking user info for user ID:", userId);
     }
 
     function removeUser (userId) {
-        // Implement logic to remove user
         console.log("Removing user with ID:", userId);
     }
 
     function closeUser DetailModal() {
-        // Implement logic to close the user detail modal
         console.log("Closing user detail modal");
     }
 </script>
