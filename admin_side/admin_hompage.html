@@ -65,11 +65,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr id="userRow-1">
-                            <td> 1 </td>
+                        <tr>
+                            <td class = "no-id-column"> 1 </td>
                             <td> Kim</td>
                             <td> Chaewon </td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
+                            <td> <span class="status verified">Verified</span> </td>
                             <td> 20/03/2025 </td>
                             <td>
                                 <div class="dropdown">
@@ -81,8 +81,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="userRow-2">
-                            <td> 2 </td>
+                        <tr>
+                            <td class = "no-id-column"> 2 </td>
                             <td> Hong</td>
                             <td> Eunchae </td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
@@ -97,8 +97,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="userRow-3">
-                            <td> 3 </td>
+                        <tr>
+                            <td class = "no-id-column"> 3 </td>
                             <td> Kazuha</td>
                             <td> </td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
@@ -113,8 +113,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="userRow-4">
-                            <td> 4 </td>
+                        <tr>
+                            <td class = "no-id-column"> 4 </td>
                             <td> Sakura</td>
                             <td> Miyawaki </td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
@@ -129,8 +129,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="userRow-5">
-                            <td> 5 </td>
+                        <tr>
+                            <td class = "no-id-column"> 5 </td>
                             <td> Huh</td>
                             <td> Yunjin</td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
@@ -145,11 +145,11 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="userRow-6">
-                            <td> 6 </td>
+                        <tr>
+                            <td class = "no-id-column"> 6 </td>
                             <td> Gawr </td>
                             <td> Gura</td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
+                            <td> <span class="status verified"> Verified</span> </td>
                             <td> 20/03/2025 </td>
                             <td>
                                 <div class="dropdown">
@@ -161,8 +161,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="userRow-7">
-                            <td> 7 </td>
+                        <tr>
+                            <td class = "no-id-column"> 7 </td>
                             <td> Ammelia </td>
                             <td> Watson </td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
@@ -178,7 +178,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td> 8 </td>
+                            <td class = "no-id-column"> 8 </td>
                             <td> Ninomae </td>
                             <td> Ina'nis </td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
@@ -193,8 +193,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="userRow-9">
-                            <td> 9 </td>
+                        <tr>
+                            <td class = "no-id-column"> 9 </td>
                             <td> Takanashi </td>
                             <td> Kiara </td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
@@ -209,8 +209,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr id="userRow-10">
-                            <td> 10 </td>
+                        <tr>
+                            <td class = "no-id-column"> 10 </td>
                             <td> Mori </td>
                             <td> Calliope </td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
@@ -220,7 +220,7 @@
                                     <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
                                     <div class="dropdown-content">
                                         <a href="#" onclick="checkUserInfo(10)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(10)">Remove User</a>
+                                        <a href="#" onclick="removeUser(1)">Remove User</a>
                                     </div>
                                 </div>
                             </td>
@@ -249,14 +249,14 @@
                     <div class="right-section">
                         <h3>Account Access</h3>
                         <div class="role-buttons">
-                            <button id="executiveDirectorButton" class="role-button">Executive Director</button>
-                            <button id="programDirectorButton" class="role-button">Program Directors</button>
-                            <button id="professorButton" class="role-button">Professors</button>
-                            <button id="studentButton" class="role-button">Students</button>
+                            <button class="role-button" onclick="setUserRole('Executive Director')">Executive Director</button>
+                            <button class="role-button" onclick="setUserRole('Program Directors')">Program Directors</button>
+                            <button class="role-button" onclick="setUserRole('Professors')">Professors</button>
+                            <button class="role-button" onclick="setUserRole('Students')">Students</button>
                         </div>
                         <div class="action-buttons">
-                            <button id = "approveButton" class="approve-button">Approve</button>
-                            <button id= "rejectButton" class ="reject-button">Reject</button>
+                            <button class="approve-button" onclick="approveUser()">Approve</button>
+                            <button class="reject-button" onclick="rejectUser()">Reject</button>
                         </div>
                     </div>
                 </div>
