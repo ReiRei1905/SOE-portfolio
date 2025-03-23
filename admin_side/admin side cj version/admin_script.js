@@ -9,9 +9,9 @@ function handleProfileClick() {
 
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    const listsUsers = document.getElementById('listsUsers');
+    const mainContent = document.getElementById('mainContent');
     sidebar.classList.toggle('active');
-    listsUsers.classList.toggle('shifted');
+    mainContent.classList.toggle('shifted');
 
 }
 
@@ -259,8 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //
-
-function toggleUsersDropdown(button) {
+function toggleDropdown(button) {
     button.parentElement.classList.toggle("show");
 }
 
@@ -276,6 +275,6 @@ function checkUserInfo(userId) {
     console.log("Checking user info for user ID:", userId);
 }
 
-function removeUser (userId) {
-    console.log("Removing user with ID:", userId);
+function closeUserDetailModal() {
+    console.log("Closing user detail modal");
 }
