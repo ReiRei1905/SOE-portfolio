@@ -491,7 +491,7 @@ thead th{
 }*/
 
 
-    
+
 
 #userDetailModal {
     position: fixed;
@@ -502,7 +502,7 @@ thead th{
     justify-content: center;
     /* Add the hidden class to hide the modal initially */
     display: none;
-    z-index: 50;
+    z-index: 100;
     
 }
 

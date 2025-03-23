@@ -12,7 +12,6 @@ function toggleSidebar() {
     const listsUsers = document.getElementById('listsUsers');
     sidebar.classList.toggle('active');
     listsUsers.classList.toggle('shifted');
-
 }
 
 // Added this event listener to set the top property of the sidebar dynamically
@@ -25,16 +24,6 @@ window.addEventListener('DOMContentLoaded', () => {
 function toggleDropdown(button) {
     var dropdownContent = button.nextElementSibling;
     dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-}
-
-function checkUserInfo(userId) {
-    // Implement the logic to check user info
-    alert('Check User Info for user ID: ' + userId);
-}
-
-function removeUser(userId) {
-    // Implement the logic to remove user
-    alert('Remove User with user ID: ' + userId);
 }
 
 // Close the dropdown if the user clicks outside of it
@@ -79,7 +68,6 @@ const users = [
         idNumber: '2023-12347',
         signUpDate: '20/03/2025'
     },
-
     {
         id: 4,
         name: 'Sakura Miyawaki',
@@ -88,9 +76,7 @@ const users = [
         yearEnroll: '2023',
         idNumber: '2023-12348',
         signUpDate: '20/03/2025'
-
     },
-
     {
         id: 5,
         name: 'Huh Yunjin',
@@ -99,9 +85,7 @@ const users = [
         yearEnroll: '2023',
         idNumber: '2023-12349',
         signUpDate: '20/03/2025'
-
     },
-
     {
         id: 6,
         name: 'Gawr Gura',
@@ -110,9 +94,7 @@ const users = [
         yearEnroll: '2023',
         idNumber: '2023-12350',
         signUpDate: '20/03/2025'
-
     },
-
     {
         id: 7,
         name: 'Ammelia Watson',
@@ -121,9 +103,7 @@ const users = [
         yearEnroll: '2023',
         idNumber: '2023-12351',
         signUpDate: '20/03/2025'
-
     },
-
     {
         id: 8,
         name: 'Ninomae Ina\'nis',
@@ -132,9 +112,7 @@ const users = [
         yearEnroll: '2023',
         idNumber: '2023-12352',
         signUpDate: '20/03/2025'
-
     },
-
     {
         id: 9,
         name: 'Takanashi Kiara',
@@ -143,9 +121,7 @@ const users = [
         yearEnroll: '2023',
         idNumber: '2023-12353',
         signUpDate: '20/03/2025'
-
     },
-
     {
         id: 10,
         name: 'Mori Calliope',
@@ -154,9 +130,7 @@ const users = [
         yearEnroll: '2023',
         idNumber: '2023-12354',
         signUpDate: '20/03/2025'
-
     },
-
 ];
 
 function checkUserInfo(userId) {
@@ -188,18 +162,18 @@ function closeUserDetailModal() {
 // Add event listener to close button
 document.addEventListener('DOMContentLoaded', function() {
     const closeModalButton = document.querySelector('#closeModalButton');
-    closeModalButton.addEventListener('click', closeUserDetailModal);
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeUserDetailModal);
+    }
 });
 
 function setUserRole(role) {
     console.log(`User role set to: ${role}`);
     // Implement role setting logic here when applying database
-
 }
 
 /* Assuming users already signed up */
 function toggleRole(button) {
-    
     button.classList.toggle('selected');
 }
 
@@ -258,8 +232,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-//
-
 function toggleUsersDropdown(button) {
     button.parentElement.classList.toggle("show");
 }
@@ -272,10 +244,6 @@ function filterUsers(role) {
     console.log("Filtering users by role:", role);
 }
 
-function checkUserInfo(userId) {
-    console.log("Checking user info for user ID:", userId);
-}
-
-function removeUser (userId) {
+function removeUser(userId) {
     console.log("Removing user with ID:", userId);
 }
