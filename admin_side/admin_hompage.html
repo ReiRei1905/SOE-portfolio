@@ -42,14 +42,14 @@
             <a class="text-lg" href="#">User Lists</a>
             <a class="text-lg" href="#">Classes</a>
             <a class="text-lg" href="#">Lists of Students</a>
-            <a class="text-lg" href="#">About us</a>
+            <a class="text-lg" href="../CJ ABOUT/about_us.html">About us</a>
         </nav>
     </div>
-    <div id="listsUsers" class="flex-1 transition-all duration-300">
-        <div class="flex justify-between items-center mb-2">
-            <div class="flex items-center">
-                <i class="fas fa-bars text-xl mr-2 cursor-pointer" onclick="toggleSidebar()"></i>
-                <h2 class="text-lg font-bold">Lists of Users</h2>
+    <div id="listsUsers" class="lists-users-section">
+        <div class="lists-users-header">
+            <div class="header-left">
+                <i class="fas fa-bars sidebar-toggle" onclick="toggleSidebar()"></i>
+                <h2 class="lists-users-title">Lists of Users</h2>
             </div>
         </div>
 
@@ -62,6 +62,7 @@
             <div class="search-dropdown">
                 <button class="filter-button" onclick="toggleUsersDropdown(this)">
                     <i class="filter-icon fas fa-filter"></i> <!-- Filter Icon -->
+                    <span id="selectedFilter">All Users</span> <!-- Placeholder for selected filter -->
                 </button>
                 <div class="search-dropdown-content">
                     <a href="#" onclick="filterUsers('all')">All Users</a>
@@ -94,17 +95,23 @@
                         <tr>
                             <th class = "no-id-column"> No. id </th>
                             <th> First Name </th>
+                            <th> Middle Initial</th>
                             <th> Last Name </th>
+                            <th> Suffix</th>
+                            <th> Role </th>
                             <th> Status </th>
                             <th> Created Account </th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr id="userRow-1">
+                    <tbody id = userTableBody>
+                        <!--<tr id="userRow-1">
                             <td> 1 </td>
                             <td> Kim</td>
+                            <td> </td>
+                            <td> </td>
                             <td> Chaewon </td>
+                            <td> Professor </td>
                             <td> <span class="status not-verified"> Not Verified</span> </td>
                             <td> 20/03/2025 </td>
                             <td>
@@ -116,151 +123,7 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
-                        <tr id="userRow-2">
-                            <td> 2 </td>
-                            <td> Hong</td>
-                            <td> Eunchae </td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(2)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(2)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="userRow-3">
-                            <td> 3 </td>
-                            <td> Kazuha</td>
-                            <td> </td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(3)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(3)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="userRow-4">
-                            <td> 4 </td>
-                            <td> Sakura</td>
-                            <td> Miyawaki </td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(4)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(4)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="userRow-5">
-                            <td> 5 </td>
-                            <td> Huh</td>
-                            <td> Yunjin</td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(5)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(5)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="userRow-6">
-                            <td> 6 </td>
-                            <td> Gawr </td>
-                            <td> Gura</td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(6)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(6)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="userRow-7">
-                            <td> 7 </td>
-                            <td> Ammelia </td>
-                            <td> Watson </td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(7)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(7)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> 8 </td>
-                            <td> Ninomae </td>
-                            <td> Ina'nis </td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(8)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(8)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="userRow-9">
-                            <td> 9 </td>
-                            <td> Takanashi </td>
-                            <td> Kiara </td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(9)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(9)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id="userRow-10">
-                            <td> 10 </td>
-                            <td> Mori </td>
-                            <td> Calliope </td>
-                            <td> <span class="status not-verified"> Not Verified</span> </td>
-                            <td> 20/03/2025 </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="checkUserInfo(10)">Check User Info</a>
-                                        <a href="#" onclick="removeUser(10)">Remove User</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                        </tr>-->
                     </tbody>
                 </table>
             </section>
@@ -276,6 +139,7 @@
                     <div class="left-section">
                         <h3 id="userName"></h3>
                         <p id="userId"></p>
+                        <p id="userRole"></p>
                         <p id="userEmail"></p>
                         <p id="userProgram"></p>
                         <p id="userYearEnroll"></p>

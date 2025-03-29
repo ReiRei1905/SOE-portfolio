@@ -6,20 +6,6 @@
     justify-content: space-between;
 }
 
-/* Breakdown for page-layout: 
-    1. Set the background color to a light gray
-    2. Display the layout as a flex container;
-        (Applies the CSS display: flex property, making the element a flex container. 
-        This allows for flexible and responsive layouts.)
-    3. Arrange the flex-direction in a column
-        (Applies the CSS flex-direction property, which specifies the direction of the flexible items. 
-        In this case, the items are arranged in a column.)
-    4. Set the minimum height of the layout to 100vh
-        (Applies the CSS min-height property, which sets the minimum height of an element. 
-        In this case, the layout will take up at least 100% of the viewport height.)
-
-*/
-
 /* Start of Header styles */
 
 header {
@@ -187,6 +173,39 @@ header {
     background-color: #6c757d; /* Darker background color on hover */
 }
 
+/* Lists Users Section */
+.lists-users-section {
+    flex: 1;
+    transition: all 0.3s ease-in-out; /* Equivalent to transition-all duration-300 */
+}
+
+/* Lists Users Header */
+.lists-users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem; /* Equivalent to mb-2 */
+}
+
+/* Header Left Section */
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Sidebar Toggle Icon */
+.sidebar-toggle {
+    font-size: 1.25rem; /* Equivalent to text-xl */
+    margin-right: 0.5rem; /* Equivalent to mr-2 */
+    cursor: pointer;
+}
+
+/* Lists Users Title */
+.lists-users-title {
+    font-size: 1.125rem; /* Equivalent to text-lg */
+    font-weight: bold;
+}
+
 #listsUsers {
     flex: 1;
     transition: all 0.3s;
@@ -287,6 +306,16 @@ header {
     border-radius: 9999px;
     padding: 0.5rem;
     margin-left: 35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 15rem;
+}
+
+#selectedFilter {
+    margin-left: 0.5rem;
+    font-weight: bold;
+    align-items: center;
 }
 
 .filter-icon {
@@ -353,7 +382,7 @@ thead th{
 
 .table__body{
     width: 95%;
-    max-height: 70vh;
+    max-height: 65vh;
     background-color: #ffffff;
     margin: .8rem;
     border-radius: .6rem;
@@ -395,18 +424,20 @@ thead th{
     text-decoration: underline;
 }
 
-.status.verified {
-    background-color: #007bff; /* Blue background for Verified */
-    border: 1px solid #007bff;
-    color: white;
-    text-align: center;
-}
+
 
 .status.not-verified {
     background-color: #dc3545; /* Red background for Not Verified */
     border: 1px solid #dc3545;
     color: white;
     
+}
+
+.status.verified {
+    background-color: #007bff; /* Blue background for Verified */
+    border: 1px solid #007bff;
+    color: white;
+    text-align: center;
 }
 
 .dropdown {
@@ -462,42 +493,8 @@ thead th{
 }
 
 
-/*.hidden {
-    display: none;
-}
-
-#userDetailView {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.role-button, .approve-button, .reject-button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.role-button {
-    background-color: #f0f0f0;
-}
-
-.approve-button {
-    background-color: #4caf50;
-    color: white;
-}
-
-.reject-button {
-    background-color: #f44336;
-    color: white;
-}*/
-
-
-
-
 #userDetailModal {
+    display: none;
     position: fixed;
     inset: 0;
     background-color: rgba(75, 85, 99, 0.5); /* bg-gray-600 bg-opacity-50 */
@@ -513,12 +510,16 @@ thead th{
 
 #userDetailModal .modal-content {
     background-color: white; /* bg-white */
-    padding: 1.5rem; /* p-6 */
+    padding: 20px; /* p-6 */
     border-radius: 0.5rem; /* rounded-lg */
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
     width: 700px; /* Adjust the width */
     height: 400px;
     display: flex;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     flex-direction: column;
     align-items: center;
     border: 2px solid #000; /* Add a black border */

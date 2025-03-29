@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
     sidebar.style.top = `${header.offsetHeight}px`;
 });
 
-function toggleDropdown(button) {
+/*function toggleDropdown(button) {
     var dropdownContent = button.nextElementSibling;
     dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
 }
@@ -37,126 +37,310 @@ window.onclick = function(event) {
             }
         }
     }
+}*/
+
+function toggleDropdown(button) {
+    const dropdownContent = button.nextElementSibling;
+    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
 }
+
+window.addEventListener('click', (event) => {
+    if (!event.target.closest('.dropbtn')) {
+        document.querySelectorAll('.dropdown-content.show').forEach(dropdown => {
+            dropdown.classList.remove('show');
+        });
+    }
+});
+
 
 // Predefined list of users (replace with actual data fetching in a real application)
-const users = [
-    {
-        id: 1,
-        name: 'Kim Chaewon',
-        email: 'chae@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12345',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 2,
-        name: 'Hong Eunchae',
-        email: 'hong@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12346',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 3,
-        name: 'Kazuha',
-        email: 'zuha@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12347',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 4,
-        name: 'Sakura Miyawaki',
-        email: 'kura@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12348',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 5,
-        name: 'Huh Yunjin',
-        email: 'huh@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12349',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 6,
-        name: 'Gawr Gura',
-        email: 'gura@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12350',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 7,
-        name: 'Ammelia Watson',
-        email: 'ame@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12351',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 8,
-        name: 'Ninomae Ina\'nis',
-        email: 'ina@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12352',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 9,
-        name: 'Takanashi Kiara',
-        email: 'kiara@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12353',
-        signUpDate: '20/03/2025'
-    },
-    {
-        id: 10,
-        name: 'Mori Calliope',
-        email: 'mori@example.com',
-        program: 'Computer Engineering',
-        yearEnroll: '2023',
-        idNumber: '2023-12354',
-        signUpDate: '20/03/2025'
-    },
-];
+// Eventually, when you have a backend, update fetchUsers() to fetch data via API.
 
-function checkUserInfo(userId) {
-    // Find user data based on userId
-    const userData = users.find(user => user.id === userId);
+/* 
 
-    if (userData) {
-        console.log('User data found:', userData); // Debugging statement
-        // Populate user detail view with fetched data
-        document.getElementById('userName').innerText = `Name: ${userData.name}`;
-        document.getElementById('userId').innerText = `ID: ${userData.id}`;
-        document.getElementById('userEmail').innerText = `School Email: ${userData.email}`;
-        document.getElementById('userProgram').innerText = `Program Enrolled: ${userData.program}`;
-        document.getElementById('userYearEnroll').innerText = `Enrolled in: ${userData.yearEnroll}`;
-        document.getElementById('userIdNumber').innerText = `ID Number: ${userData.idNumber}`;
-        document.getElementById('userSignUpDate').innerText = `Signed up on ${userData.signUpDate}`;
-
-        // Show user detail modal
-        document.getElementById('userDetailModal').style.display = 'flex';
-    } else {
-        alert('User not found');
-    }
+ Replace this:
+ async function fetchUsers() {
+    return new Promise((resolve) => { /* Simulated delay  });
 }
 
+to this:
+
+async function fetchUsers() {
+    const response = await fetch('/api/users');  // Replace with actual API
+    return await response.json();
+}
+
+*/ 
+
+let users = [];
+
+/*async function fetchUsers() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([
+                {
+                    id: 1,
+                    name: 'Kim Chaewon',
+                    role: 'Professor',
+                    email: 'chae@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12345',
+                    signUpDate: '20/03/2025'
+                },
+                // Add more users here
+
+                {
+                    id: 2,
+                    name: 'Hong Eunchae',
+                    role: 'Student',
+                    email: 'hong@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12346',
+                    signUpDate: '20/03/2025'
+                },
+                {
+                    id: 3,
+                    name: 'Kazuha',
+                    role: 'Student',
+                    email: 'zuha@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12347',
+                    signUpDate: '20/03/2025'
+                },
+                {
+                    id: 4,
+                    name: 'Sakura Miyawaki',
+                    role: 'Executive Director',
+                    email: 'kura@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12348',
+                    signUpDate: '20/03/2025'
+                },
+                {
+                    id: 5,
+                    name: 'Huh Yunjin',
+                    role: 'Professor',
+                    email: 'huh@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12349',
+                    signUpDate: '20/03/2025'
+                },
+                {
+                    id: 6,
+                    name: 'Gawr Gura',
+                    role: 'Student',
+                    email: 'gura@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12350',
+                    signUpDate: '20/03/2025'
+                },
+                {
+                    id: 7,
+                    name: 'Ammelia Watson',
+                    role: 'Program Director',
+                    email: 'ame@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12351',
+                    signUpDate: '20/03/2025'
+                },
+                {
+                    id: 8,
+                    name: 'Ninomae Ina\'nis',
+                    role: 'Professor',
+                    email: 'ina@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12352',
+                    signUpDate: '20/03/2025'
+                },
+                {
+                    id: 9,
+                    name: 'Takanashi Kiara',
+                    role: 'Professor',
+                    email: 'kiara@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12353',
+                    signUpDate: '20/03/2025'
+                },
+                {
+                    id: 10,
+                    name: 'Mori Calliope',
+                    role: 'Program Director',
+                    email: 'mori@example.com',
+                    program: 'Computer Engineering',
+                    yearEnroll: '2023',
+                    idNumber: '2023-12354',
+                    signUpDate: '20/03/2025'
+                },
+
+            ]);
+        }, 500); // Simulates fetching delay
+    });
+}*/
+
+async function loadUsers() {
+    const users = await fetchUsers(); // Simulated or fetched user data
+    const tableBody = document.getElementById('userTableBody'); // Ensure the correct ID is used
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    users.forEach(user => {
+        const row = document.createElement('tr');
+        row.id = `userRow-${user.id}`;
+        row.innerHTML = `
+            <td>${user.id}</td>
+            <td>${user.firstName}</td>
+            <td>${user.middleInitial || ''}</td>
+            <td>${user.lastName}</td>
+            <td>${user.suffix || ''}</td>
+            <td>${user.role}</td>
+            <td><span class="status not-verified">${user.status}</span></td>
+            <td>${user.createdAccount}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="toggleDropdown(this)">⋮</button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="checkUserInfo(${user.id})">Check User Info</a>
+                        <a href="#" onclick="removeUser(${user.id})">Remove User</a>
+                    </div>
+                </div>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Example fetchUsers function to simulate user data
+async function fetchUsers() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve([
+                {
+                    id: 1,
+                    firstName: 'Kim',
+                    middleInitial: '',
+                    lastName: 'Chaewon',
+                    suffix: '',
+                    role: 'Professor',
+                    status: 'Not Verified',
+                    createdAccount: '20/03/2025'
+                },
+                {
+                    id: 2,
+                    firstName: 'Hong',
+                    middleInitial: '',
+                    lastName: 'Eunchae',
+                    suffix: '',
+                    role: 'Student',
+                    status: 'Not Verified',
+                    createdAccount: '21/03/2025'
+                },
+                // Add more user objects as needed
+            ]);
+        }, 500); // Simulated delay
+    });
+}
+
+// Ensure loadUsers is called on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadUsers();
+});
+
+/*async function loadUsers() {
+    const users = await fetchUsers();
+    const tableBody = document.getElementById('userTableBody');
+    tableBody.innerHTML = ''; // Clear existing entries
+
+    users.forEach(user => {
+        const row = document.createElement('tr');
+        row.id = `userRow-${user.id}`;
+        row.innerHTML = `
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.role}</td>
+            <td>${user.email}</td>
+            <td>${user.program}</td>
+            <td class="status">Pending</td>
+            <td>
+                <button onclick="checkUserInfo(${user.id})">View</button>
+                <button onclick="approveUser(${user.id})">Approve</button>
+                <button onclick="rejectUser(${user.id})">Reject</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}*/
+
+// Call function on page load
+/*document.addEventListener('DOMContentLoaded', loadUsers);*/
+
+
+/**/
+
+function checkUserInfo(userId) {
+    // Fetch user data (replace with actual backend call if needed)
+    const users = [
+        {
+            id: 1,
+            firstName: 'Kim',
+            middleInitial: '',
+            lastName: 'Chaewon',
+            suffix: '',
+            role: 'Professor',
+            email: 'chae@example.com',
+            program: 'Computer Engineering',
+            yearEnroll: '2023',
+            idNumber: '123456',
+            signUpDate: '20/03/2025'
+        },
+        {
+            id: 2,
+            firstName: 'Hong',
+            middleInitial: '',
+            lastName: 'Eunchae',
+            suffix: '',
+            role: 'Student',
+            email: 'hong@example.com',
+            program: 'Computer Engineering',
+            yearEnroll: '2023',
+            idNumber: '654321',
+            signUpDate: '21/03/2025'
+        }
+    ];
+
+    // Find the user by ID
+    const user = users.find(u => u.id === userId);
+    if (!user) {
+        alert('User not found!');
+        return;
+    }
+
+    // Populate the modal with user details
+    document.getElementById('userName').textContent = `${user.firstName} ${user.lastName}`;
+    document.getElementById('userId').textContent = `ID: ${user.id}`;
+    document.getElementById('userRole').textContent = `Role: ${user.role}`;
+    document.getElementById('userEmail').textContent = `Email: ${user.email}`;
+    document.getElementById('userProgram').textContent = `Program: ${user.program}`;
+    document.getElementById('userYearEnroll').textContent = `Year Enrolled: ${user.yearEnroll}`;
+    document.getElementById('userIdNumber').textContent = `ID Number: ${user.idNumber}`;
+    document.getElementById('userSignUpDate').textContent = `Sign-Up Date: ${user.signUpDate}`;
+
+    // Show the modal
+    const modal = document.getElementById('userDetailModal');
+    modal.style.display = 'block';
+}
+
+// Close the modal
 function closeUserDetailModal() {
-    document.getElementById('userDetailModal').style.display = 'none';
+    const modal = document.getElementById('userDetailModal');
+    modal.style.display = 'none';
 }
 
 // Add event listener to close button
@@ -177,7 +361,39 @@ function toggleRole(button) {
     button.classList.toggle('selected');
 }
 
-function approveUser(userId) {
+async function approveUser(userId) {
+    console.log('User approved:', userId);
+    
+    // Simulating API call (replace with real request later)
+    await fetch(`/api/users/${userId}/approve`, { method: 'POST' });
+
+    updateUserStatus(userId, 'Verified');
+    closeUserDetailModal();
+    // Close the dropdown
+    closeAllDropdowns();
+}
+
+async function rejectUser(userId) {
+    console.log('User rejected:', userId);
+
+    await fetch(`/api/users/${userId}/reject`, { method: 'POST' });
+
+    updateUserStatus(userId, 'Not Verified');
+    closeUserDetailModal();
+    // Close the dropdown
+    closeAllDropdowns();
+}
+
+// Helper function to close all dropdowns
+function closeAllDropdowns() {
+    document.querySelectorAll('.dropdown-content, .search-dropdown-content').forEach(dropdown => {
+        dropdown.classList.remove('show'); // Remove the 'show' class
+        dropdown.style.display = 'none';  // Optionally set display to 'none'
+    });
+}
+
+
+/*function approveUser(userId) {
     console.log('User approved');
     // Implement user approval logic here when applying database
     const user = users.find(user => user.id === userId);
@@ -186,9 +402,9 @@ function approveUser(userId) {
         updateUserStatus(userId, 'Verified');
         closeUserDetailModal(); // Move this line after the status update
     }
-}
+}*/
 
-function rejectUser(userId) {
+/*function rejectUser(userId) {
     console.log('User rejected');
     // Implement user rejection logic here when applying database
     const user = users.find(user => user.id === userId);
@@ -197,7 +413,7 @@ function rejectUser(userId) {
         updateUserStatus(userId, 'Not Verified');
         closeUserDetailModal(); // Move this line after the status update
     }
-}
+}*/
 
 function updateUserStatus(userId, status) {
     const userRow = document.querySelector(`#userRow-${userId}`);
@@ -242,6 +458,23 @@ function toggleInfoDropdown(button) {
 
 function filterUsers(role) {
     console.log("Filtering users by role:", role);
+
+    // Update the selected filter text
+    const selectedFilter = document.getElementById('selectedFilter');
+    selectedFilter.innerText = role.charAt(0).toUpperCase() + role.slice(1).replace(/([A-Z])/g, ' $1').trim();
+
+    // Get all user rows
+    const userRows = document.querySelectorAll('tbody tr');
+
+    // Loop through each user row and filter based on the role
+    userRows.forEach(row => {
+        const roleCell = row.querySelector('td:nth-child(6)'); // Assuming the role is in the 6th column
+        if (role === 'all' || roleCell.innerText.toLowerCase() === role.toLowerCase()) {
+            row.style.display = ''; // Show the row
+        } else {
+            row.style.display = 'none'; // Hide the row
+        }
+    });
 }
 
 function removeUser(userId) {

@@ -21,18 +21,27 @@ function toggleChart() {
 }
 
 function goToOverviewPage() {
-    // Scroll to the top of the page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    /*// Scroll to the top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' });*/
+    // Redirect to the overview page
+    window.location.href = "faculty_homepage.html";
 }
 
 function handleProfileClick() {
     alert('Profile button clicked!');
 }
 
+/*Toggle sidebar in overview section */
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
+    const mainContent = document.getElementById('overview') 
+    || document.getElementById('aboutUs') 
+    || document.getElementById('programs')
+    || document.getElementById('classes')
+    || document.getElementById('listsStudents');
+    // Toggle the sidebar visibility
     sidebar.classList.toggle('active');
+    // Adjust the main content position
     mainContent.classList.toggle('shifted');
 
 }
@@ -43,4 +52,5 @@ window.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
     sidebar.style.top = `${header.offsetHeight}px`;
 });
+
 
