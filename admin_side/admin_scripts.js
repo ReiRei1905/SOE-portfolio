@@ -1,6 +1,9 @@
 function goToOverviewPage() {
-    // Scroll to the top of the page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    /*// Scroll to the top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' });*/
+    
+    // Redirect to the overview page
+    window.location.href = "admin_homepage.html";
 }
 
 function handleProfileClick() {
@@ -9,8 +12,15 @@ function handleProfileClick() {
 
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    const listsUsers = document.getElementById('listsUsers');
+    const listsUsers = document.getElementById('listsUsers')
+    || document.getElementById('aboutUs') 
+    || document.getElementById('programs')
+    || document.getElementById('classes');
+
+    // Toggle the sidebar visibility
     sidebar.classList.toggle('active');
+
+    // Adjust the main content position
     listsUsers.classList.toggle('shifted');
 }
 
