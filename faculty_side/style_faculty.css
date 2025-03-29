@@ -492,6 +492,34 @@ header {
     position: relative;
 }
 
+
+.hidden { 
+    display: none; 
+}
+
+.program-item { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 10px 0; 
+
+}
+
+.dropdown { 
+    position: absolute; 
+    background: #fff; 
+    border: 1px solid #ccc; 
+    padding: 5px; 
+}
+
+.remove-btn { 
+    background: red; 
+    color: white; 
+    border: none; 
+    padding: 5px; 
+    cursor: pointer; 
+}
+
 /*End of Programs Styles*/
 
 /*Start of Classes Styles*/
@@ -559,6 +587,8 @@ header {
 }
 
 /*End of Lists of Students Styles*/
+
+
 
 /*Start of footer*/
 footer {

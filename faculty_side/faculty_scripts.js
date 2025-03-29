@@ -53,4 +53,47 @@ window.addEventListener('DOMContentLoaded', () => {
     sidebar.style.top = `${header.offsetHeight}px`;
 });
 
+/*Start of function with program creation*/
+// JavaScript for dynamic program creation and removal
+const createProgramBtn = document.getElementById('createProgramBtn');
+const programInputContainer = document.getElementById('programInputContainer');
+const programInput = document.getElementById('programInput');
+const confirmProgramBtn = document.getElementById('confirmProgramBtn');
+const programList = document.getElementById('programList');
 
+// Show input field when "Create a new Program" is clicked
+createProgramBtn.addEventListener('click', () => {
+    programInputContainer.classList.remove('hidden');
+    programInput.focus();
+});
+
+// Add new program to the list
+confirmProgramBtn.addEventListener('click', () => {
+    const programName = programInput.value.trim();
+    if (programName) {
+        const programItem = document.createElement('div');
+        programItem.classList.add('program-item');
+        programItem.innerHTML = `
+            <span>${programName}</span>
+            <i class="fas fa-ellipsis-v program-options" onclick="toggleDropdown(this)"></i>
+            <div class="dropdown hidden">
+                <button class="remove-btn" onclick="removeProgram(this)">Remove Program</button>
+            </div>
+        `;
+        programList.appendChild(programItem);
+            programInput.value = '';
+            programInputContainer.classList.add('hidden');
+        }
+    });
+
+// Remove program from the list
+function removeProgram(button) {
+    const programItem = button.closest('.program-item');
+    programList.removeChild(programItem);
+}
+
+// Toggle dropdown menu
+function toggleDropdown(icon) {
+    const dropdown = icon.nextElementSibling;
+    dropdown.classList.toggle('hidden');
+}
