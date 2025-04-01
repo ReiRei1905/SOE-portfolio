@@ -56,28 +56,14 @@
     <!-- Start of Content -->
     <div class="programs-content">
         <button id="createProgramBtn" class="create-program-btn">+ Create a new Program</button>
-        <div id="programInputContainer" class="hidden">
-            <input id="programInput" type="text" placeholder="e.g. Computer Engineering [CpE]" />
-            <button id="confirmProgramBtn" class="confirm-btn">Confirm</button>
-        </div>
+            <div id="programInputContainer" class="hidden">
+                <input id="programInput" type="text" placeholder="e.g. Computer Engineering [CpE]" />
+                <button id="confirmProgramBtn" class="confirm-btn">Confirm</button>
+            </div>
             <h3>School of Engineering Programs</h3>
             <div id="programList" class="program-list"></div>
     </div>
-
-    <!-- Template for a program item -->
-    <template id="programItemTemplate">
-        <div class="program-item">
-            <span class="program-name"></span>
-            <i class="fas fa-ellipsis-v program-options" onclick="toggleDropdown(this)"></i>
-            <div class="dropdown hidden">
-                <button class="assign-PD-btn" onclick="assignProgramDirector(this)">Assign Program Director</button>
-                <button class="remove-btn" onclick="removeProgram(this)">Remove Program</button>
-            </div>
-        </div>
-    </template>
-
-    <!-- End of Content Hatdog--> 
-
+    <!-- End of Content -->
 </div>
 </main>
 <footer class="footer-content">

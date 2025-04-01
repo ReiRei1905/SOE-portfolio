@@ -53,45 +53,38 @@ window.addEventListener('DOMContentLoaded', () => {
     sidebar.style.top = `${header.offsetHeight}px`;
 });
 
-
-/*Start of Creation of Programs*/ 
-// Get references to elements
-const createProgramBtn = document.querySelector('.create-program-btn');
+/*Start of function with program creation*/
+// JavaScript for dynamic program creation and removal
+const createProgramBtn = document.getElementById('createProgramBtn');
 const programInputContainer = document.getElementById('programInputContainer');
 const programInput = document.getElementById('programInput');
 const confirmProgramBtn = document.getElementById('confirmProgramBtn');
-const programList = document.querySelector('.program-list');
-const programItemTemplate = document.getElementById('programItemTemplate');
-
-// Ensure the input container is hidden initially
-window.addEventListener('DOMContentLoaded', () => {
-    programInputContainer.classList.add('hidden'); // Add the hidden class on page load
-});
+const programList = document.getElementById('programList');
 
 // Show input field when "Create a new Program" is clicked
 createProgramBtn.addEventListener('click', () => {
-    programInputContainer.classList.remove('hidden'); // Show the input container
-    programInput.focus(); // Focus on the input field
-    createProgramBtn.classList.add('hidden'); // Hide the "Create a new Program" button
+    programInputContainer.classList.remove('hidden');
+    programInput.focus();
 });
 
 // Add new program to the list
 confirmProgramBtn.addEventListener('click', () => {
     const programName = programInput.value.trim();
     if (programName) {
-        // Clone the template
-        const programItem = programItemTemplate.content.cloneNode(true);
-        programItem.querySelector('.program-name').textContent = programName;
-
-        // Append the new program item to the list
+        const programItem = document.createElement('div');
+        programItem.classList.add('program-item');
+        programItem.innerHTML = `
+            <span>${programName}</span>
+            <i class="fas fa-ellipsis-v program-options" onclick="toggleDropdown(this)"></i>
+            <div class="dropdown hidden">
+                <button class="remove-btn" onclick="removeProgram(this)">Remove Program</button>
+            </div>
+        `;
         programList.appendChild(programItem);
-
-        // Clear the input field and hide the input container
-        programInput.value = '';
-        programInputContainer.classList.add('hidden'); // Hide the input container
-        createProgramBtn.classList.remove('hidden'); // Show the "Create a new Program" button again
-    }
-});
+            programInput.value = '';
+            programInputContainer.classList.add('hidden');
+        }
+    });
 
 // Remove program from the list
 function removeProgram(button) {
