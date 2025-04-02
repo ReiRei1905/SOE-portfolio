@@ -45,7 +45,7 @@
                 <input type="text" id="suffix" name="suffix" placeholder="e.g. Jr., Sr., III">
             </div>
 
-            <button type="submit">Confirm</button> <!-- Change to submit button -->
+            <button type="submit" name="signup">Confirm</button> <!-- Change to submit button -->
         </form>
         <a href="login_page.php" class="login-link">Already have an account? Log-in</a> <!-- Update the href to point to the login page -->
     </div>

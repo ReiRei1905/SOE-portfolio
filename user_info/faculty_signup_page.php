@@ -65,8 +65,8 @@
                 </div>
             </div>
             <div class="form-footer">
-                <a href="login_page.html" class="login-link">Already have an account? Log-in</a>
-                <button type="submit" class="confirm-button">Confirm</button>
+                <a href="login_page.php" class="login-link">Already have an account? Log-in</a>
+                <button type="submit" class="confirm-button" name="signup">Confirm</button>
             </div>
         </form>
     </div>

@@ -10,7 +10,7 @@
     <div class="container">
         <a href="role_page.html" class="back-arrow">&#x2190;</a> <!-- Update the href to point to the role page -->
         <h1>SOE-PORTFOLIO SIGNING UP</h1>
-        <form action="student_signup_register.php" method="POST"> <!-- Set action to your PHP script -->
+        <form action="student_signup_register.php" method="post"> <!-- Set action to your PHP script -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="first-name">First Name:</label>
@@ -61,7 +61,7 @@
             </div>
             <div class="form-footer">
                 <a href="login_page.php" class="login-link">Already have an account? Log-in</a> <!-- Update the href to point to the login page -->
-                <button type="submit" class="confirm-button">Confirm</button>
+                <button type="submit" class="confirm-button" name="signup">Confirm</button>
             </div>
         </form>
     </div>

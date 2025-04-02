@@ -19,7 +19,7 @@
             <div class="input-container">
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
-            <button type="submit">Log-in</button>
+            <button type="submit" name="login">Log-in</button>
             <div class="links">
                 <a href="data_privacy.html">Don’t have an account? Sign up</a>
                 <a href="#">Forgot Password?</a>
