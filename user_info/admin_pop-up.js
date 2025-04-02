@@ -14,11 +14,11 @@ function submitForm() {
 }
 
 function redirectToLogin() {
-    window.location.href = 'login_page.html';
+    window.location.href = 'login_page.php';
 }
 
 function redirectToSignup() {
-    window.location.href = 'admin_signup_page.html';
+    window.location.href = 'admin_signup_page.php';
 }
 
 
