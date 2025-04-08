@@ -11,7 +11,7 @@
     <div class="container" id="Sign-up" style="display:none;">
 
     <h1 class="form-title">Register</h1>
-    <form method="post" action=""> 
+    <form method="post" action="register.php"> 
     <div class="input-group">
     <i class="fas fa-user"></i>
     <input type="text" name="fName" id="fName" placeholder="First name" required>
