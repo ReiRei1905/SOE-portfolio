@@ -10,7 +10,7 @@ if (isset($_POST['SignUp'])) {
 
     // Check if the email already exists
     $checkEmail = "SELECT * FROM users WHERE email='$email'";
-    $result =$conn->query(query:$checkEmail);
+    $result =$conn->query($checkEmail);
 
 if ($result->num_rows > 0) {
     echo "Email already exists. Please use a different email !";
