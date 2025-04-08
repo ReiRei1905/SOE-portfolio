@@ -12,7 +12,7 @@ if (isset($_POST['SignUp'])) {
     $checkEmail = "SELECT * FROM users WHERE email='$email'";
     $result =$conn->query($checkEmail);
 
-if ($result->num_rows > 0) {
+    if ($result->num_rows > 0) {
     echo "Email already exists. Please use a different email !";
 
 } else {
