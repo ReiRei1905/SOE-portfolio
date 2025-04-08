@@ -2,8 +2,8 @@
 
 include 'connect.php';
 if (isset($_POST['SignUp'])) {
-    $fName = $_POST['fName'];
-    $lName = $_POST['lName'];
+    $firstName = $_POST['fName'];
+    $lastName = $_POST['lName'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $password = md5($_POST['password']);
