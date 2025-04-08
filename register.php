@@ -16,8 +16,8 @@ if ($result->num_rows > 0) {
     echo "Email already exists. Please use a different email !";
 
 } else {
-    $insertQuery = "INSERT INTO users (firstName, lastName, email, password) 
-                    VALUES ('$fName', '$lName', '$email', '$password')";
+    $insertQuery = "INSERT INTO users (fName, lName, email, password) 
+                    VALUES ('$firstName', '$lastName', '$email', '$password')";
                     if ($conn->query( $insertQuery) === TRUE) {
                         header("location: index.php");
                     } else {
