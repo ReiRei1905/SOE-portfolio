@@ -9,7 +9,7 @@ if (isset($_POST['SignUp'])) {
     $password = md5($_POST['password']);
 
     // Check if the email already exists
-    $checkEmailQuery = "SELECT * FROM users WHERE email='$email'";
+    $checkEmail = "SELECT * FROM users WHERE email='$email'";
     $result =$conn->query($checkEmail);
 
 if ($result->num_rows > 0) {
