@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "soeportfolio";
+$dbname = "soe-portfolio";
 $conn = new mysqli($host, $user, $password, $dbname);
 
 // Check connection

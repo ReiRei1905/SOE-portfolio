@@ -11,6 +11,11 @@
 header {
     background-color: #ffffff;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it stays above other elements */
 }
 
 .header-container {
@@ -51,6 +56,14 @@ header {
 }
 
 /* End of Header*/
+main {
+    margin-top: calc(120px); /* Add space for the header */
+    margin-bottom: calc(70px); /* Add space for the fixed footer */
+    padding: 1rem; /* Optional: Add padding for better spacing */
+    overflow-y: auto; /* Allow scrolling for the content */
+    height: 100vh; /* Ensure the content fits within the viewport */
+    box-sizing: border-box; /* Include padding and border in height calculation */
+}
 
 /*Header-actions*/
 .header-actions {
@@ -135,13 +148,16 @@ header {
     background-color: #4a4a4a;
     color: #ffffff;
     padding: 1rem;
-    position: absolute;
+    position: fixed;
     left: 0;
     width: 16rem;
     height: 80%;
     z-index: 50;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
+    top: 0; /* Start from the top */
+    height: 100vh; /* Full height of the viewport */
+    overflow-y: auto; /* Add scrolling if content overflows */
 }
 
 #sidebar.active {
@@ -466,6 +482,7 @@ header {
     flex: 1;
     transition: all 0.3s;
     margin-left: 0;
+    margin-top: 6rem;
 }
 
 #programs.shifted {
@@ -491,6 +508,7 @@ header {
     border-radius: 0.5rem; /* Rounded corners */
     padding: 1.5rem; /* Padding around content */
     margin-top: 1rem; /* Space from the header */
+    margin-bottom: 2rem; /* Add space to prevent cutoff */
 }
 
 
@@ -923,14 +941,16 @@ header {
 /*Start of footer*/
 footer {
     background-color: #1e3a8a;
-    position: absolute;
     color: #ffffff;
     width: 100%;
-    transition: all 0.3s;
-    z-index: 70; /* Ensure the footer is above other elements */
-    padding: 1rem 0;
-    bottom: 0%;
-    margin-top: 1rem;
+    z-index: 70;  
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000; 
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    min-height: 7%; /* Ensure a minimum height */
+    position : relative; /* Change to relative for normal flow */
 
 }
 
@@ -944,6 +964,7 @@ footer {
     text-align: left; /* text-left */
     color: white; /* Example text color */
     font-weight: bold;
+    margin-top: 1rem; /* mt-4 */
 
 }
 
