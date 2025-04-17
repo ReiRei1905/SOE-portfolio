@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>E-Portfolio</title>
+    <title>E-Portfolio Programs</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="style_faculty.css" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -39,10 +39,10 @@
 <main class="main-content">
     <div id="sidebar">
         <nav>
-            <a class="text-lg" href="../faculty_side/programs.html">Programs</a>
-            <a class="text-lg" href="../faculty_side/classes.html">Classes</a>
-            <a class="text-lg" href="../faculty_side/lists_students.html">Lists of Students</a>
-            <a class="text-lg" href="../faculty_side/faculty_about_us.html">About us</a>
+            <a class="text-lg" href="./programs.html">Programs</a>
+            <a class="text-lg" href="./classes.html">Classes</a>
+            <a class="text-lg" href="./lists_students.html">Lists of Students</a>
+            <a class="text-lg" href="./faculty_about_us.html">About us</a>
         </nav>
     </div>
 
@@ -67,7 +67,7 @@
     <!-- Template for a program item -->
     <template id="programItemTemplate">
         <div class="program-item">
-            <span class="program-name"></span>
+            <span class="program_name"></span>
             <i class="fas fa-ellipsis-v program-options" onclick="toggleDropdown(this)"></i>
             <div class="dropdown hidden">
                 <button class="assign-PD-btn" onclick="assignProgramDirector(this)">Assign Program Director</button>

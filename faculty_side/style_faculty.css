@@ -192,6 +192,7 @@ main {
 #overview {
     transition: all 0.3s;
     margin-left: 0;
+    margin-top: 6rem;
 }
 
 #overview.shifted {
@@ -371,6 +372,7 @@ main {
     flex: 1;
     transition: all 0.3s;
     margin-left: 0;
+    margin-top: 6rem;
 }
 
 #aboutUs.shifted {
@@ -510,7 +512,6 @@ main {
     margin-top: 1rem; /* Space from the header */
     margin-bottom: 2rem; /* Add space to prevent cutoff */
 }
-
 
 /* Create Program Button */
 .create-program-btn {
@@ -682,6 +683,7 @@ main {
     flex: 1;
     transition: all 0.3s;
     margin-left: 0;
+    margin-top: 6rem;
 }
 
 #courses.shifted {
@@ -707,6 +709,7 @@ main {
     border-radius: 0.5rem; /* Rounded corners */
     padding: 1.5rem; /* Padding around content */
     margin-top: 1rem; /* Space from the header */
+    margin-bottom: 2rem; /* Add space to prevent cutoff */
 }
 
 /* Create Program Button */
@@ -875,6 +878,7 @@ main {
     flex: 1;
     transition: all 0.3s;
     margin-left: 0;
+    margin-top: 6rem;
 }
 
 #classes.shifted {
@@ -908,6 +912,8 @@ main {
     flex: 1;
     transition: all 0.3s;
     margin-left: 0;
+    margin-top: 6rem;
+    
 }
 
 #listsStudents.shifted {

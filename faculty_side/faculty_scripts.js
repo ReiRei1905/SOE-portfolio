@@ -54,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.style.top = `${header.offsetHeight}px`;
 
     // Program creation logic
-    const createProgramBtn = document.getElementById("createProgramBtn");
+    
+    /*this was before implmenting backend:
+    /*const createProgramBtn = document.getElementById("createProgramBtn");
     const programInputContainer = document.getElementById("programInputContainer");
     const programInput = document.getElementById("programInput");
     const confirmProgramBtn = document.getElementById("confirmProgramBtn");
@@ -78,7 +80,107 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Please enter a valid program name.");
             }
         });
+    }*/
+    
+    // Program creation logic with backend
+    fetchPrograms();
+    const createProgramBtn = document.getElementById("createProgramBtn");
+    const programInputContainer = document.getElementById("programInputContainer");
+    const programInput = document.getElementById("programInput");
+    const confirmProgramBtn = document.getElementById("confirmProgramBtn");
+    const programList = document.getElementById("programList");
+    const programItemTemplate = document.getElementById("programItemTemplate");
+
+    createProgramBtn.addEventListener("click", () => {
+        programInputContainer.classList.remove("hidden");
+        programInput.focus();
+    });
+
+    confirmProgramBtn.addEventListener("click", () => {
+        const programName = programInput.value.trim();
+        if (programName) {
+            // Send program name to the server
+            fetch("create_program.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `programName=${encodeURIComponent(programName)}`,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        // Clear the input and hide the input container
+                        programInput.value = "";
+                        programInputContainer.classList.add("hidden");
+    
+                        // Fetch the updated program list dynamically
+                        fetchPrograms();
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        } else {
+            alert("Please enter a valid program name.");
+        }
+    });
+    
+    // Function to fetch and display programs
+    function fetchPrograms() {
+        fetch("fetch_programs.php")
+            .then((response) => response.json())
+            .then((programs) => {
+                console.log("Fetched programs:", programs); // Debugging: Check the fetched programs
+                programList.innerHTML = ""; // Clear the current program list
+    
+                // Add each program to the list
+                programs.forEach((program) => {
+                    const programItem = programItemTemplate.content.cloneNode(true);
+                    programItem.querySelector(".program_name").textContent = program.name;
+    
+                    // Add functionality to the remove button
+                    const removeButton = programItem.querySelector(".remove-btn");
+                    removeButton.addEventListener("click", () => {
+                        if (confirm(`Are you sure you want to delete "${program.name}"?`)) {
+                            deleteProgram(program.id, programItem);
+                        }
+                    });
+    
+                    programList.appendChild(programItem);
+                });
+            })
+            .catch((error) => {
+                console.error("Error fetching programs:", error);
+            });
     }
+    
+    deleteProgram(programId, programItem);
+    function deleteProgram(programId, programItem) {
+        fetch("delete_program.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `programId=${encodeURIComponent(programId)}`,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    // Remove the program from the DOM
+                    programList.removeChild(programItem);
+                    alert("Program deleted successfully.");
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch((error) => {
+                console.error("Error deleting program:", error);
+            });
+    }
+    
 
     // Course creation logic
     const createCourseBtn = document.getElementById("createCourseBtn");
@@ -122,7 +224,7 @@ programList.addEventListener("click", (event) => {
     // Check if the click is on a program item
     const programItem = event.target.closest(".program-item");
     if (programItem) {
-        const programName = programItem.querySelector(".program-name").textContent.trim();
+        const programName = programItem.querySelector(".program_name").textContent.trim();
         const programSlug = encodeURIComponent(programName);
         // Redirect to courses.html with the program name as a query parameter
         window.location.href = `courses.html?program=${programSlug}`;
