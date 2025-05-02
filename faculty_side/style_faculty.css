@@ -138,6 +138,7 @@ main {
 .main-content {
     max-width: 100%;
     margin-top: 1rem; /* mt-4 */
+    margin-bottom: 16px;
     padding-left: 1rem; /* px-4 */
     padding-right: 1rem; /* px-4 */
     flex: 1;
@@ -498,6 +499,7 @@ main {
 }
 
 .programs-title {
+    margin-top: 1rem; /* Space above the title */
     font-size: 1.125rem; /* Equivalent to text-lg */
     font-weight: bold;
 }
@@ -579,19 +581,24 @@ main {
     align-items: center; /* Centers items horizontally */
 }
 
+.programs-content,
+.program-list {
+    overflow: visible;
+}
+
 .program-item {
+    position: relative; /* Required for the dropdown to position correctly */
     display: flex;
-    height: 3rem; /* Equivalent to h-12 */
-    width: 70%;
     justify-content: space-between;
     align-items: center;
-    background-color: #e9ecef; /* Light gray background */
+    background-color: #e9ecef;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
-    position: relative;
-    
+    height: 3rem; /* Fixed height to prevent resizing */
+    width: 70%; /* Center alignment */
+    overflow: visible; /* Ensure dropdown is not clipped */
 }
 
 .program-item span {
@@ -600,10 +607,22 @@ main {
 }
 
 .program-options {
+    position: absolute; /* Position relative to the program item */
+    top: 50%; /* Center vertically */
+    right: 1rem; /* Align to the right edge of the parent */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    margin-left: 55em;
     cursor: pointer;
     color: #6c757d; /* Gray color */
     font-size: 1.25rem;
     transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .program-options {
+        right: 0.5rem; /* Adjust right margin for smaller screens */
+
+    }
 }
 
 .program-options:hover {
@@ -612,19 +631,18 @@ main {
 
 /* Dropdown menu styling */
 .dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
+    position: relative; /* Ensure it's positioned relative to the parent */
+    top: calc(100% + 5px); /* Add spacing below the triple-dot icon */
+    right: 0; /* Align to the right edge of the parent */
     background-color: white;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 0.5rem;
     z-index: 10;
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Align items vertically */
-    gap: 0.5rem; /* Add spacing between buttons */
-
+    display: none; /* Initially hidden */
+    width: max-content; /* Ensure dropdown width doesn't affect layout */
+    
 }
 
 .dropdown.hidden {
@@ -632,6 +650,7 @@ main {
 }
 
 .assign-PD-btn {
+    display: block; /* Ensure buttons stack vertically */
     background-color: #17a2b8; /* Teal background */
     color: white;
     border: none;
@@ -647,6 +666,7 @@ main {
 }
 
 .remove-btn {
+    display: block; /* Ensure buttons stack vertically */
     background-color: #dc3545; /* Red background */
     color: white;
     border: none;
@@ -729,6 +749,27 @@ main {
     font-weight: bold;
 }
 
+.course-search {
+    position: relative;
+    margin-bottom: 1rem; /* Space below the search bar */
+}
+
+.course-search i {
+    position: absolute;
+    left: 0.5rem; /* Equivalent to left-2 */
+    top: 0.5rem; /* Equivalent to top-2 */
+    color: #6b7280; /* Equivalent to text-gray-500 */
+}
+
+.search-input {
+    border: 1px solid #e2e8f0; /* Equivalent to border */
+    border-radius: 9999px; /* Equivalent to rounded-full */
+    padding-top: 0.25rem; /* Equivalent to py-1 */
+    padding-bottom: 0.25rem; /* Equivalent to py-1 */
+    padding-left: 2rem; /* Equivalent to pl-8 */
+    padding-right: 1rem; /* Equivalent to px-4 */
+}
+
 .create-course-btn:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
@@ -794,15 +835,34 @@ main {
     font-weight: bold;
 }
 
+/*.course-options {
+    cursor: pointer;
+    color: #6c757d; /* Gray color 
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+}*/
+
+.courses-options:hover {
+    color: #343a40; /* Darker gray on hover */
+}
+
 .course-options {
+    position: absolute; /* Position relative to the program item */
+    top: 50%; /* Center vertically */
+    right: 1rem; /* Align to the right edge of the parent */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    margin-left: 55em;
     cursor: pointer;
     color: #6c757d; /* Gray color */
     font-size: 1.25rem;
     transition: color 0.3s ease;
 }
 
-.courses-options:hover {
-    color: #343a40; /* Darker gray on hover */
+@media (max-width: 768px) {
+    .course-options {
+        right: 0.5rem; /* Adjust right margin for smaller screens */
+
+    }
 }
 
 /* Dropdown menu styling */

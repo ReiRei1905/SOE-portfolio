@@ -40,7 +40,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // NEW CODE: Add event listeners for buttons to show specific forms
+    // Add event listeners for "Back" buttons
+    const backButtons = document.querySelectorAll(".back-button");
+    backButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            // Hide all sign-up forms and show the sign-in form
+            studentSignUp.style.display = 'none';
+            facultySignUp.style.display = 'none';
+            adminSignUp.style.display = 'none';
+            signInContainer.style.display = 'block';
+        });
+    });
+
+    // Add event listeners for buttons to show specific forms
     document.getElementById("showStudent").addEventListener("click", function () {
         showForm("studentSignUp", "student");
     });
@@ -68,5 +81,4 @@ document.addEventListener("DOMContentLoaded", function () {
             roleSelect.value = roleValue;
         }
     }
-    
 });

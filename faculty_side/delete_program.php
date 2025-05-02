@@ -1,26 +1,30 @@
 <?php
-// filepath: c:\xampp\htdocs\SOE-portfolio\faculty_side\delete_program.php
 header('Content-Type: application/json');
 
+// Database connection
 $connection = new mysqli("localhost", "root", "", "soe_portfolio");
 
 if ($connection->connect_error) {
-    die(json_encode(["success" => false, "message" => "Database connection failed"]));
+    echo json_encode(["success" => false, "message" => "Database connection failed."]);
+    exit;
 }
 
-$programId = $_POST['programId'] ?? '';
+// Get course ID from POST request
+$courseId = isset($_POST['courseId']) ? intval($_POST['courseId']) : 0;
 
-if (!empty($programId)) {
-    $stmt = $connection->prepare("DELETE FROM programs WHERE program_id = ?");
-    $stmt->bind_param("i", $programId);
+if ($courseId > 0) {
+    $stmt = $connection->prepare("DELETE FROM courses WHERE course_id = ?");
+    $stmt->bind_param("i", $courseId);
+
     if ($stmt->execute()) {
-        echo json_encode(["success" => true]);
+        echo json_encode(["success" => true, "message" => "Course deleted successfully."]);
     } else {
-        echo json_encode(["success" => false, "message" => "Failed to delete program"]);
+        echo json_encode(["success" => false, "message" => "Failed to delete course."]);
     }
+
     $stmt->close();
 } else {
-    echo json_encode(["success" => false, "message" => "Invalid program ID"]);
+    echo json_encode(["success" => false, "message" => "Invalid course ID."]);
 }
 
 $connection->close();
