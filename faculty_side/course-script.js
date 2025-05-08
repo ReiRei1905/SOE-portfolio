@@ -38,8 +38,29 @@ document.addEventListener("DOMContentLoaded", function() {
     const programName = urlParams.get("program");
     const createCourseBtn = document.getElementById("createCourseBtn");
     const courseInputContainer = document.getElementById("courseInputContainer");
-    const courseList = document.getElementById("courseList");
     const courseItemTemplate = document.getElementById("courseItemTemplate");
+
+    // For course search logic:
+    const courseSearchInput = document.getElementById("courseSearchInput");
+    const courseList = document.getElementById("courseList");
+
+    courseSearchInput.addEventListener("input", function () {
+        const searchTerm = courseSearchInput.value.toLowerCase().trim();
+
+        // Get all course items
+        const courseItems = courseList.querySelectorAll(".course-item");
+
+        courseItems.forEach((item) => {
+            const courseName = item.querySelector(".course-name").textContent.toLowerCase();
+
+            // Show or hide the course item based on the search term
+            if (courseName.includes(searchTerm)) {
+                item.style.display = ""; // Show the item
+            } else {
+                item.style.display = "none"; // Hide the item
+            }
+        });
+    });
 
     fetch("fetch_programs.php")
             .then((response) => response.json())
@@ -92,8 +113,10 @@ document.addEventListener("DOMContentLoaded", function() {
             .then((data) => {
                 console.log("Response from create_course.php:", data);
                 if (data.success) {
+                    
                     courseInput.value = ""; // Clear the input field
                     fetchCourses(); // Refresh the course list
+                    courseInputContainer.classList.add("hidden"); // Hide the input container
                 } else {
                     alert(data.message);
                 }
@@ -167,6 +190,8 @@ document.addEventListener('click', (event) => {
             menu.classList.add('hidden');
         });
     }
+
+    
 });
 
 function removeCourse(button, courseId) {

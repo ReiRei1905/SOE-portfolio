@@ -32,6 +32,18 @@
             <input class="search-input" placeholder="Search" type="text"/>
             <i class="fas fa-search"></i>
         </div>
+        <!--Notification Icon-->
+        <div class="header-notifications">
+            <i class="fas fa-bell text-xl cursor-pointer" onclick="handleNotificationClick()"></i>
+            <span id="notificationBadge" class="notification-badge">3</span>
+            <div id="notificationDropdown" class="dropdown">
+                <ul id="notificationList">
+                    <li>New program added: Computer Engineering</li>
+                    <li>Course updated: Advanced Mathematics</li>
+                    <li>Class schedule changed: Section A</li>
+                </ul>
+            </div>
+        </div>
         <!--Profile Icon-->
         <div class="header-profile">
             <i class="fas fa-user-circle text-xl cursor-pointer" onclick="handleProfileClick()"></i>
@@ -82,6 +94,7 @@
             <i class="fas fa-ellipsis-v program-options" onclick="toggleDropdown(this)"></i>
             <div class="dropdown hidden">
                 <button class="assign-PD-btn" onclick="assignProgramDirector(this)">Assign Program Director</button>
+                <button class="edit-btn" onclick="editProgram(this)">Edit Program</button>
                 <button class="remove-btn" onclick="removeProgram(this)">Remove Program</button>
             </div>
         </div>

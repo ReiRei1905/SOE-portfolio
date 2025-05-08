@@ -1,5 +1,23 @@
 console.log("faculty_scripts.js loaded");
 
+function handleNotificationClick() {
+    const notificationDropdown = document.getElementById("notificationDropdown");
+    const notificationBadge = document.getElementById("notificationBadge");
+
+    if (notificationDropdown) {
+        notificationDropdown.classList.toggle("hidden"); // Toggle the 'hidden' class
+        console.log("Notification dropdown visibility:", !notificationDropdown.classList.contains("hidden"));
+
+        if (!notificationDropdown.classList.contains("hidden")) {
+            notificationBadge.classList.add("hidden");
+        }
+
+        console.log("Notification dropdown content:", notificationDropdown.innerHTML); // Debugging
+    } else {
+        console.error("Notification dropdown element not found!");
+    }
+}
+
 function toggleChart() {
     const pieChart = document.getElementById('pieChart');
     const mostUploads = document.getElementById('mostUploads');
@@ -29,10 +47,6 @@ function goToOverviewPage() {
     window.location.href = "faculty_homepage.html";
 }
 
-function handleProfileClick() {
-    alert('Profile button clicked!');
-}
-
 /*Toggle sidebar in overview section */
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
@@ -55,6 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector('header');
     const sidebar = document.getElementById('sidebar');
     sidebar.style.top = `${header.offsetHeight}px`;
+
+    document.addEventListener("click", (event) => {
+        const notificationDropdown = document.getElementById("notificationDropdown");
+        const notificationIcon = document.querySelector(".header-notifications i");
+    
+        if (
+            notificationDropdown &&
+            !notificationDropdown.contains(event.target) &&
+            !notificationIcon.contains(event.target)
+        ) {
+            notificationDropdown.classList.add("hidden"); // Hide the dropdown
+        }
+    });
 
     // Add this code here to handle clicks outside the dropdown
     document.addEventListener("click", (event) => {
@@ -142,6 +169,74 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
+    console.log("Program list:", programList);
+    
+    function editProgram(button) {
+        const programItem = button.closest('.program-item');
+        const programNameSpan = programItem.querySelector('.program_name');
+        const programId = programItem.dataset.programId; // Ensure program ID is stored in the DOM
+        const newProgramName = prompt("Edit program name:", programNameSpan.textContent);
+    
+        if (newProgramName) {
+            fetch("edit_program.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `programId=${encodeURIComponent(programId)}&newProgramName=${encodeURIComponent(newProgramName.trim())}`,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        alert(data.message);
+                        programNameSpan.textContent = newProgramName.trim(); // Update the program name in the DOM
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch((error) => console.error("Error editing program:", error));
+        }
+    }
+
+    function deleteProgram(programId, programItem) {
+        fetch("delete_program.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `programId=${encodeURIComponent(programId)}`,
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("Backend response:", data); // Log the backend response for debugging
+    
+                if (data.success) {
+                    // Only remove the program from the DOM if deletion was successful
+                    console.log("Deletion successful. Removing program from UI.");
+                    alert(data.message);
+                } else {
+                    // Show error message if deletion failed
+                    console.warn("Deletion failed. Program will remain in the UI.");
+                    alert(data.message);
+    
+                    // Re-fetch the program list to ensure the UI reflects the backend state
+                    fetchPrograms();
+                }
+            })
+            .catch((error) => {
+                console.error("Error deleting program:", error);
+                alert("An error occurred while trying to delete the program. Please try again.");
+    
+                // Re-fetch the program list even if there's an error
+                fetchPrograms();
+            });
+    }
+
     // Function to fetch and display programs
     function fetchPrograms() {
         fetch("fetch_programs.php")
@@ -154,6 +249,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     programs.forEach((program) => {
                         const programItem = programItemTemplate.content.cloneNode(true);
                         programItem.querySelector(".program_name").textContent = program.name;
+                        programItem.querySelector(".program-item").dataset.programId = program.id; // Add program ID
+    
+                        // Attach the editProgram function to the "Edit Program" button
+                        const editButton = programItem.querySelector(".edit-btn");
+                        editButton.addEventListener("click", function () {
+                            editProgram(this);
+                        });
     
                         const removeButton = programItem.querySelector(".remove-btn");
                         removeButton.addEventListener("click", () => {
@@ -172,33 +274,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Error fetching programs:", error);
             });
     }
-    
-    console.log("Program list:", programList);
-
-    deleteProgram(programId, programItem);
-    function deleteProgram(programId, programItem) {
-        fetch("delete_program.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `programId=${encodeURIComponent(programId)}`,
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    // Remove the program from the DOM
-                    programList.removeChild(programItem);
-                    alert("Program deleted successfully.");
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch((error) => {
-                console.error("Error deleting program:", error);
-            });
-    }
-
 
     /*Start of Course Logic */
     updateBreadcrumb(programName);
@@ -380,9 +455,6 @@ function toggleDropdown(icon) {
     const dropdown = icon.nextElementSibling;
     dropdown.classList.toggle('hidden');
 }
-
-
-
 
 // Toggle dropdown menu
 function toggleDropdown(icon) {

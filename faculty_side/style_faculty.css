@@ -75,6 +75,8 @@ main {
     border-top: 4px solid #FBAF41; /* Add this line */
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    gap: 1rem; /* Equivalent to space-x-4 */
+    
 }
 
 .header-home, .header-profile {
@@ -101,10 +103,14 @@ main {
 }
 
 .header-actions .header-search {
+    flex-grow: 1; /* Allow the search bar to take up available space */
+    max-width: 600px; /* Optional: Limit the maximum width */
     position: relative;
+    margin-left: 2rem; /* Add spacing from the header-home */
 }
 
-.search-input {
+.header-actions .header-search .search-input {
+    width: 100%;
     border: 1px solid #e2e8f0; /* Equivalent to border */
     border-radius: 9999px; /* Equivalent to rounded-full */
     padding-top: 0.25rem; /* Equivalent to py-1 */
@@ -112,6 +118,67 @@ main {
     padding-left: 2rem; /* Equivalent to pl-8 */
     padding-right: 1rem; /* Equivalent to px-4 */
 }
+
+/* Notification Icon */
+.header-notifications {
+    position: relative;
+    align-items: center;
+    display: flex;
+    margin-left: auto; /* Remove any large margins */
+    margin-right: 0.5rem; /* Add spacing between notification and profile icons */
+}
+
+.header-notifications i {
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.header-notifications i:hover {
+    color: #007bff;
+}
+
+/* Notification Dropdown */
+#notificationDropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    z-index: 10;
+    width: 300px;
+}
+
+#notificationDropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#notificationDropdown ul li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+#notificationDropdown ul li:last-child {
+    border-bottom: none;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    display: none; /* Initially hidden */
+}
+
+
 
 .header-actions .header-search i {
     position: absolute;
@@ -602,7 +669,7 @@ main {
 }
 
 .program-item span {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: bold;
 }
 
@@ -614,7 +681,7 @@ main {
     margin-left: 55em;
     cursor: pointer;
     color: #6c757d; /* Gray color */
-    font-size: 1.25rem;
+    font-size: 2rem;
     transition: color 0.3s ease;
 }
 
@@ -762,6 +829,7 @@ main {
 }
 
 .search-input {
+    width: 30%;
     border: 1px solid #e2e8f0; /* Equivalent to border */
     border-radius: 9999px; /* Equivalent to rounded-full */
     padding-top: 0.25rem; /* Equivalent to py-1 */
@@ -831,7 +899,7 @@ main {
 }
 
 .course-item span {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 
@@ -854,7 +922,7 @@ main {
     margin-left: 55em;
     cursor: pointer;
     color: #6c757d; /* Gray color */
-    font-size: 1.25rem;
+    font-size: 2rem;
     transition: color 0.3s ease;
 }
 
@@ -887,7 +955,7 @@ main {
 }
 
 .edit-btn {
-    background-color: #17a2b8; /* Teal background */
+    background-color: orange;
     color: white;
     border: none;
     border-radius: 0.25rem;
@@ -898,7 +966,7 @@ main {
 }
 
 .edit-btn:hover {
-    background-color: #138496; /* Darker teal on hover */
+    background-color: darkorange; /* Darker teal on hover */
 }
 
 .remove-btn {
