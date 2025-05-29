@@ -1261,13 +1261,13 @@ main {
     display: flex;                /* Center the icon */
     align-items: center;
     justify-content: center;
-    width: 40px;                  /* Increase width */
-    height: 40px;                 /* Increase height */
+    width: 20px;                  /* Increase width */
+    height: 20px;                 /* Increase height */
     border-radius: 50%;           /* Optional: make it circular */
     background: transparent;      /* No background unless hovered */
     cursor: pointer;
     color: #6c757d;
-    font-size: 1.5rem;
+    font-size: 1rem;
     transition: 0.2s, color 0.3s;
     position: absolute;
     top: 50%;
