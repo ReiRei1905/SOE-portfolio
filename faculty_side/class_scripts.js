@@ -51,26 +51,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
     
+    // ...existing code...
     const renderClasses = (classes) => {
         classList.innerHTML = ""; // Clear the existing list
     
         classes.forEach((classItem) => {
-            // Clone the template
             const template = document.getElementById("classItemTemplate");
             const item = template.content.cloneNode(true);
     
-            // Populate the template with data
-            const classNameText = `${classItem.course_name} ${classItem.class_name} Term ${classItem.term_number} ${classItem.start_year}-${classItem.end_year}`;
-            item.querySelector(".class-name").textContent = classNameText;
+            // Add a click event to redirect with class_id in URL
+            item.querySelector(".class-name").textContent = `${classItem.course_name} ${classItem.class_name} Term ${classItem.term_number} ${classItem.start_year}-${classItem.end_year}`;
+            item.querySelector(".class-item").addEventListener("click", () => {
+                window.location.href = `class-handling.html?class_id=${classItem.class_id}`;
+            });
     
-            // Update the onclick handlers with the correct classId
+            // Update the onclick handlers for edit/remove
             item.querySelector(".edit-btn").setAttribute("onclick", `editClass(this, ${classItem.class_id})`);
             item.querySelector(".remove-btn").setAttribute("onclick", `removeClass(this, ${classItem.class_id})`);
     
-            // Append the populated item to the class list
             classList.appendChild(item);
         });
     };
+    // ...existing code...
     fetchClasses(); // Initial fetch to populate the class list
 
     const renderDropdown = (courses) => {
