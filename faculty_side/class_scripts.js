@@ -58,17 +58,29 @@ document.addEventListener("DOMContentLoaded", () => {
         classes.forEach((classItem) => {
             const template = document.getElementById("classItemTemplate");
             const item = template.content.cloneNode(true);
-    
-            // Add a click event to redirect with class_id in URL
+        
             item.querySelector(".class-name").textContent = `${classItem.course_name} ${classItem.class_name} Term ${classItem.term_number} ${classItem.start_year}-${classItem.end_year}`;
+        
+            // Redirect on class-item click
             item.querySelector(".class-item").addEventListener("click", () => {
                 window.location.href = `class-handling.html?class_id=${classItem.class_id}`;
             });
-    
-            // Update the onclick handlers for edit/remove
+        
+            // Prevent redirect when clicking the ellipsis (class-options)
+            item.querySelector(".class-options").addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggleDropdown(e.target);
+            });
+        
+            // Prevent redirect when clicking inside the dropdown
+            item.querySelector(".dropdown").addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+        
+            // Set up edit/remove
             item.querySelector(".edit-btn").setAttribute("onclick", `editClass(this, ${classItem.class_id})`);
             item.querySelector(".remove-btn").setAttribute("onclick", `removeClass(this, ${classItem.class_id})`);
-    
+        
             classList.appendChild(item);
         });
     };
@@ -227,21 +239,13 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     
-
-    function toggleDropdown(icon) {
-        console.log("Toggling dropdown for:", icon); // Debugging log
-        const dropdown = icon.nextElementSibling;
-    
-        // Close any other open dropdowns
-        document.querySelectorAll('.dropdown').forEach((menu) => {
-            if (menu !== dropdown) {
-                menu.classList.add('hidden');
-            }
-        });
-    
-        // Toggle the visibility of the current dropdown
-        dropdown.classList.toggle('hidden');
-    }
+        function toggleDropdown(icon) {
+            const dropdown = icon.nextElementSibling;
+            document.querySelectorAll('.dropdown').forEach((menu) => {
+                if (menu !== dropdown) menu.classList.add('hidden');
+            });
+            dropdown.classList.toggle('hidden');
+        }
     
     // Attach to the global scope
     window.toggleDropdown = toggleDropdown;
