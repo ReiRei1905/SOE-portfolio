@@ -7,14 +7,18 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    transform: scale(0.8); /* Scale down to 90% */
+    transform-origin: top center; /* Keep scaling centered */
 }
 
 /* Container styling */
 .container {
+    margin-top: 12%;
     background-color: #ffffff;
     border: 2px solid #ffa500; /* Orange border */
     border-radius: 15px;
     padding: 30px 40px;
+    max-width: 90%;
     width: 400px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     text-align: center;
@@ -22,7 +26,8 @@ body {
 
 /* Style for the back button container */
 .back-button-container {
-    text-align: left;
+    margin-top: 20px;
+    text-align: center;
 }
 
 /* Style for the back button */
@@ -35,6 +40,7 @@ body {
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100px; /* Fixed width for consistency */
 }
 
 .back-button:hover {
@@ -181,4 +187,113 @@ button {
 button:hover {
     background-color: #ffa500;
     color: #ffffff;
+}
+
+/* Add specific styles for OTP verification if needed */
+.container p {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+#timer {
+    font-weight: bold;
+    color: #ff0000; /* Red for urgency */
+}
+
+/* OTP Container Styling */
+.otp-container {
+    margin-top: 15%;
+    background-color: #fff;
+    border: 2px solid #ffa500; /* Orange border */
+    border-radius: 15px;
+    padding: 30px 40px;
+    max-width: 90%;
+    width: 400px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* OTP Title Styling */
+.otp-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000; /* Black heading */
+    margin-bottom: 20px;
+}
+
+/* OTP Instructions Styling */
+.otp-instructions {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 15px;
+}
+
+/* OTP Timer Styling */
+.otp-timer,
+#timer {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffa500; /* Orange for urgency */
+    margin-bottom: 20px;
+}
+
+/* OTP Input Styling */
+.otp-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.otp-input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none;
+}
+
+/* OTP Submit Button Styling */
+.otp-submit-btn {
+    background-color: #007bff; /* Blue button */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.otp-submit-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* OTP Back Button Styling */
+.otp-back-btn {
+    background-color: transparent;
+    border: 1px solid #ffa500;
+    color: #ffa500;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.otp-back-btn:hover {
+    background-color: #ffa500;
+    color: #ffffff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .otp-container {
+        padding: 20px;
+    }
 }

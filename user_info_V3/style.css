@@ -7,14 +7,18 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    transform: scale(0.8); /* Scale down to 90% */
+    transform-origin: top center; /* Keep scaling centered */
 }
 
 /* Container styling */
 .container {
+    margin-top: 12%;
     background-color: #ffffff;
     border: 2px solid #ffa500; /* Orange border */
     border-radius: 15px;
     padding: 30px 40px;
+    max-width: 90%;
     width: 400px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     text-align: center;
@@ -22,7 +26,8 @@ body {
 
 /* Style for the back button container */
 .back-button-container {
-    text-align: left;
+    margin-top: 10px;
+    text-align: center;
 }
 
 /* Style for the back button */
@@ -35,6 +40,7 @@ body {
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100px; /* Fixed width for consistency */
 }
 
 .back-button:hover {
@@ -181,4 +187,21 @@ button {
 button:hover {
     background-color: #ffa500;
     color: #ffffff;
+}
+
+/* Add this if you want to adjust the eye icon position */
+.password-group {
+    position: relative;
+}
+
+.password-group .toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    left: auto;
+    transform: translateY(-50%);
+    color: #666;
+    cursor: pointer;
+    z-index: 10; /* Make sure it's above the input */
+    pointer-events: auto; /* Ensure it can be clicked */
 }

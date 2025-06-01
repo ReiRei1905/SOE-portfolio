@@ -90,7 +90,7 @@ if (isset($_POST['signIn'])) {
     $password = $_POST['password'] ?? '';
 
     if (empty($email) || empty($password)) {
-        echo "Email and password are required!";
+        echo "<script>alert('Email and password are required!'); window.location.href='index.php';</script>";
         exit();
     }
 
@@ -104,13 +104,16 @@ if (isset($_POST['signIn'])) {
         if (password_verify($password, $row['password'])) {
             session_regenerate_id(true);
             $_SESSION['email'] = $row['email'];
-            header("Location: review_user.php");
+            // Redirect to OTP page (if you want OTP verification)
+            header("Location: verify_otp.php");
             exit();
         } else {
-            echo "Invalid email or password!";
+            echo "<script>alert('Invalid email or password!'); window.location.href='index.php';</script>";
+            exit();
         }
     } else {
-        echo "Invalid email or password!";
+        echo "<script>alert('Invalid email or password!'); window.location.href='index.php';</script>";
+        exit();
     }
 }
 ?>

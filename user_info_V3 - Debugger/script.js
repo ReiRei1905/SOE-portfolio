@@ -26,10 +26,39 @@ document.addEventListener("DOMContentLoaded", function () {
     roleTypeSelectors.forEach(selector => {
         selector.addEventListener('change', (e) => {
             const role = e.target.value;
+
+            // Hide all sign-up forms
             studentSignUp.style.display = 'none';
             facultySignUp.style.display = 'none';
             adminSignUp.style.display = 'none';
 
+            // Show the selected form based on the role
+            if (role === 'student') {
+                studentSignUp.style.display = 'block';
+            } else if (role === 'faculty') {
+                facultySignUp.style.display = 'block';
+            } else if (role === 'admin') {
+                adminSignUp.style.display = 'block';
+            }
+
+            // Sync all role_type dropdowns to the selected role
+            roleTypeSelectors.forEach(dropdown => {
+                dropdown.value = role;
+            });
+        });
+    });
+
+    // Listen for changes on the role_type dropdown in the sign-up forms
+    document.querySelectorAll('.role-switcher').forEach(selector => {
+        selector.addEventListener('change', (e) => {
+            const role = e.target.value;
+
+            // Hide all sign-up forms
+            studentSignUp.style.display = 'none';
+            facultySignUp.style.display = 'none';
+            adminSignUp.style.display = 'none';
+
+            // Show the selected form based on the role
             if (role === 'student') {
                 studentSignUp.style.display = 'block';
             } else if (role === 'faculty') {
@@ -40,7 +69,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // NEW CODE: Add event listeners for buttons to show specific forms
+    // Add event listeners for "Back" buttons
+    const backButtons = document.querySelectorAll(".back-button");
+    backButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            // Hide all sign-up forms and show the sign-in form
+            studentSignUp.style.display = 'none';
+            facultySignUp.style.display = 'none';
+            adminSignUp.style.display = 'none';
+            signInContainer.style.display = 'block';
+        });
+    });
+
+    // Add event listeners for buttons to show specific forms
     document.getElementById("showStudent").addEventListener("click", function () {
         showForm("studentSignUp", "student");
     });
@@ -68,5 +110,28 @@ document.addEventListener("DOMContentLoaded", function () {
             roleSelect.value = roleValue;
         }
     }
-    
+});
+
+function startOtpTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    const countdown = setInterval(() => {
+        minutes = Math.floor(timer / 60);
+        seconds = timer % 60;
+        display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        timer--;
+
+        if (timer < 0) {
+            clearInterval(countdown);
+            alert('OTP expired. Please try again.');
+            window.location.href = 'index.php'; // Redirect to restart the process
+        }
+    }, 1000);
+}
+
+// Example usage: Start a 5-minute timer
+document.addEventListener('DOMContentLoaded', () => {
+    const timerDisplay = document.getElementById('timer');
+    if (timerDisplay) {
+        startOtpTimer(300, timerDisplay); // 300 seconds = 5 minutes
+    }
 });

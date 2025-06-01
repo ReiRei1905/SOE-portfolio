@@ -2,6 +2,9 @@
 ob_start();
 session_start();
 include 'connect.php';
+require 'vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 function sanitizeInput($conn, $input) {
     return htmlspecialchars(strip_tags(trim($conn->real_escape_string($input))));
@@ -18,6 +21,8 @@ if (isset($_POST['signUp'])) {
     $role_type = sanitizeInput($conn, $_POST['role_type']);
     $faculty_role = isset($_POST['faculty_role']) ? sanitizeInput($conn, $_POST['faculty_role']) : null;
     $password = $_POST['password'];
+
+    
 
     // Only check for program_id if the role is 'student' or 'faculty'
     $program_id = null;
@@ -58,31 +63,58 @@ if (isset($_POST['signUp'])) {
     if ($stmt->execute()) {
         $user_id = $conn->insert_id;
 
+        // Insert into role-specific table BEFORE sending OTP and redirecting
         if ($role_type === 'student') {
-            $stmt = $conn->prepare("INSERT INTO students (user_id, first_name, middle_name, last_name, suffix, year_of_enrollment, id_number, program_id, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("isssssiiss", $user_id, $first_name, $middle_name, $last_name, $suffix, $year_of_enrollment, $id_number, $program_id, $email, $hashedPassword);
+            $stmt2 = $conn->prepare("INSERT INTO students (user_id, first_name, middle_name, last_name, suffix, year_of_enrollment, id_number, program_id, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt2->bind_param("isssssiiss", $user_id, $first_name, $middle_name, $last_name, $suffix, $year_of_enrollment, $id_number, $program_id, $email, $hashedPassword);
         } elseif ($role_type === 'faculty') {
-            $stmt = $conn->prepare("INSERT INTO faculty (user_id, first_name, middle_name, last_name, suffix, id_number, program_id, faculty_role, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("issssissss", $user_id, $first_name, $middle_name, $last_name, $suffix, $id_number, $program_id, $faculty_role, $email, $hashedPassword);
+            $stmt2 = $conn->prepare("INSERT INTO faculty (user_id, first_name, middle_name, last_name, suffix, id_number, program_id, faculty_role, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt2->bind_param("issssissss", $user_id, $first_name, $middle_name, $last_name, $suffix, $id_number, $program_id, $faculty_role, $email, $hashedPassword);
         } elseif ($role_type === 'admin') {
-            $stmt = $conn->prepare("INSERT INTO admins (user_id, first_name, middle_name, last_name, suffix, id_number, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("issssiss", $user_id, $first_name, $middle_name, $last_name, $suffix, $id_number, $email, $hashedPassword);
+            $stmt2 = $conn->prepare("INSERT INTO admins (user_id, first_name, middle_name, last_name, suffix, id_number, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt2->bind_param("issssiss", $user_id, $first_name, $middle_name, $last_name, $suffix, $id_number, $email, $hashedPassword);
         } else {
             echo "Invalid role type!";
             exit();
         }
 
-        if ($stmt->execute()) {
-            echo "Registration successful!";
-            header("Location: index.php");
+        if (!$stmt2->execute()) {
+            echo "Error inserting into role-specific table: " . $stmt2->error;
             exit();
-        } else {
-            echo "Error inserting into role-specific table: " . $stmt->error;
         }
 
-    } else {
-        echo "Error inserting into users table: " . $stmt->error;
+        // Generate OTP
+        $otp = rand(100000, 999999);
+        $_SESSION['otp'] = $otp;
+        $_SESSION['mail'] = $email;
+
+        // Send OTP email
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'neloangelo4123@gmail.com'; // your Gmail
+            $mail->Password = 'pflg rocs kbhp jtzl';    // your Gmail App Password
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('neloangelo4123@gmail.com', 'OTP Verification');
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+            $mail->Subject = "Your verification code";
+            $mail->Body = "<p>Dear user,</p><h3>Your OTP code is $otp</h3><br><p>With regards,<br>SOE Portfolio</p>";
+
+            $mail->send();
+            echo "<script>alert('Registration successful! OTP sent to $email'); window.location.replace('verification.php');</script>";
+        } catch (Exception $e) {
+            echo "<script>alert('Registration successful, but OTP email could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
+        }
+        exit();
     }
+
+    
 }
 
 if (isset($_POST['signIn'])) {
@@ -94,7 +126,8 @@ if (isset($_POST['signIn'])) {
         exit();
     }
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    // Only select users who are verified (status = 1)
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND status = 1");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -110,7 +143,7 @@ if (isset($_POST['signIn'])) {
             echo "Invalid email or password!";
         }
     } else {
-        echo "Invalid email or password!";
+        echo "Invalid email or password or account not verified!";
     }
 }
 ?>

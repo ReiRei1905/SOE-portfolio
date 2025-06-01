@@ -1,68 +1,16 @@
+<!-- filepath: \\192.168.80.4\sambashare\soe_portfolio\user_info_V2 - For Debugging\index.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>SOE Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file for styling -->
 </head>
 <body>
-    <!-- This is the main container for the sign-up 
-    <div class="container" id = signUp style="display: none;">
-        <h1 class = "form-title"> Register </h1>
-        <form method="post" action ="register.php">
-            <div class="input-group">
-                <i class = "fas fa-user"></i>
-                <input type = "text" name = "fName" placeholder = "First Name" required> <!-- required attribute makes the field mandatory 
-                <label for = "fName"></label>  label for accessibility, associates the label with the input field 
-            </div>
-
-            <div class="input-group">
-                <i class = "fas fa-user"></i>
-                <input type = "text" name = "lName" placeholder = "Last Name" required> <!-- required attribute makes the field mandatory 
-                <label for = "lName"></label>  label for accessibility, associates the label with the input field 
-            </div>
-
-            <div class="input-group">
-                <i class = "fas fa-envelope"></i>
-                <input type = "email" name = "email" placeholder = "Email" required> <!-- required attribute makes the field mandatory 
-                <label for = "email"></label>  label for accessibility, associates the label with the input field --
-            </div>
-
-            <div class="input-group">
-                <i class = "fas fa-lock"></i>
-                <input type = "password" name = "password" placeholder = "Password" required> <!-- required attribute makes the field mandatory 
-                <label for = "password"></label>  label for accessibility, associates the label with the input field 
-            </div>
-
-            <select name="role_type" required>
-            <option value="student">Student</option>
-            <option value="faculty">Faculty</option>
-            <option value="admin">Admin</option>
-            </select>
-
-
-            <input type = "submit" class = "btn" value = "Sign-Up" name = "signUp"> <!-- submit button to send the form data 
-
-            <div class = "links">
-                <p>Already have an account?</p> prompt for users who already have an account 
-                <button id = "signInButton">Sign In</button>
-            </div>
-        </form>
-    </div>
-     End of the main container for the sign-up -->
-
-
-     <!-- Buttons to switch between forms -
-    <div class="form-switcher">
-        <button id="showStudent">Student Sign-Up</button>
-        <button id="showFaculty">Faculty Sign-Up</button>
-        <button id="showAdmin">Admin Sign-Up</button>
-    </div> -->
-
-     <!-- Student Sign-Up -->
-     <div class="container" id= "studentSignUp" style="display: none;">
+    <!-- Student Sign-Up -->
+    <div class="container" id="studentSignUp" style="display: none;">
         <h1 class="form-title">Student Sign-Up</h1>
         <form method="post" action="register.php">
             <div class="input-group">
@@ -112,24 +60,28 @@
                 <i class="fas fa-envelope"></i>
                 <input type="email" name="email" placeholder="Email" required>
             </div>
-            <div class="input-group">
+            <div class="input-group password-group">
                 <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password" class="password-input" placeholder="Password" required>
+                <i class="fas fa-eye toggle-password"  style="cursor:pointer; position:absolute; right:15px; top:50%; transform:translateY(-50%);"></i>
             </div>
-            <p>Sign-Up as:
-                <select name="role_type" id="role_type" required>
-                    <option value="student">Student</option>
-                    <option value="faculty">Faculty</option>
-                    <option value="admin">Admin</option>
+            <div class="input-group">
+                <label for="role_type">Sign-Up as:</label>
+                <select id="role_type" name="role_type" required>
+                    <option value="student" <?= isset($role) && $role === 'student' ? 'selected' : '' ?>>Student</option>
+                    <option value="faculty" <?= isset($role) && $role === 'faculty' ? 'selected' : '' ?>>Faculty</option>
+                    <option value="admin" <?= isset($role) && $role === 'admin' ? 'selected' : '' ?>>Admin</option>
                 </select>
-            </p>
-            
+            </div>
             <input type="submit" class="btn" value="Sign-Up" name="signUp">
+            <div class="back-button-container">
+                <button class="back-button">Back</button>
+            </div>
         </form>
     </div>
 
     <!-- Faculty Sign-Up -->
-    <div class="container" id="facultySignUp" style= "display: none;">
+    <div class="container" id="facultySignUp" style="display: none;">
         <h1 class="form-title">Faculty Sign-Up</h1>
         <form method="post" action="register.php">
             <div class="input-group">
@@ -183,23 +135,28 @@
                 <i class="fas fa-envelope"></i>
                 <input type="email" name="email" placeholder="Email" required>
             </div>
-            <div class="input-group">
+            <div class="input-group password-group">
                 <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password" class="password-input" placeholder="Password" required>
+                <i class="fas fa-eye toggle-password"  style="cursor:pointer; position:absolute; right:15px; top:50%; transform:translateY(-50%);"></i>
             </div>
-            <p>Sign-Up as:
-                    <select name="role_type" id="role_type" required>
-                        <option value="student">Student</option>
-                        <option value="faculty">Faculty</option>
-                        <option value="admin">Admin</option>
-                    </select>
-            </p>
+            <div class="input-group">
+                <label for="role_type">Sign-Up as:</label>
+                <select id="role_type" name="role_type" required>
+                    <option value="student" <?= isset($role) && $role === 'student' ? 'selected' : '' ?>>Student</option>
+                    <option value="faculty" <?= isset($role) && $role === 'faculty' ? 'selected' : '' ?>>Faculty</option>
+                    <option value="admin" <?= isset($role) && $role === 'admin' ? 'selected' : '' ?>>Admin</option>
+                </select>
+            </div>
             <input type="submit" class="btn" value="Sign-Up" name="signUp">
+            <div class="back-button-container">
+                <button class="back-button">Back</button>
+            </div>
         </form>
     </div>
 
     <!-- Admin Sign-Up -->
-    <div class="container" id="adminSignUp" style= "display: none;">
+    <div class="container" id="adminSignUp" style="display: none;">
         <h1 class="form-title">Admin Sign-Up</h1>
         <form method="post" action="register.php">
             <div class="input-group">
@@ -226,49 +183,49 @@
                 <i class="fas fa-envelope"></i>
                 <input type="email" name="email" placeholder="Email" required>
             </div>
-            <div class="input-group">
+            <div class="input-group password-group">
                 <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password" class="password-input" placeholder="Password" required>
+                <i class="fas fa-eye toggle-password"  style="cursor:pointer; position:absolute; right:15px; top:50%; transform:translateY(-50%);"></i>
             </div>
-            <p>Sign-Up as:
-                    <select name="role_type" id="role_type" required>
-                        <option value="student">Student</option>
-                        <option value="faculty">Faculty</option>
-                        <option value="admin">Admin</option>
-                    </select>
-            </p>
+            <div class="input-group">
+                <label for="role_type">Sign-Up as:</label>
+                <select id="role_type" name="role_type" required>
+                   <option value="student" <?= isset($role) && $role === 'student' ? 'selected' : '' ?>>Student</option>
+                    <option value="faculty" <?= isset($role) && $role === 'faculty' ? 'selected' : '' ?>>Faculty</option>
+                    <option value="admin" <?= isset($role) && $role === 'admin' ? 'selected' : '' ?>>Admin</option>
+                </select>
+            </div>
             <input type="submit" class="btn" value="Sign-Up" name="signUp">
+            <div class="back-button-container">
+                <button class="back-button">Back</button>
+            </div>
         </form>
     </div>
 
     <!-- Sign-In Form -->
-    <div class="container" id = signIn>
-        <h1 class = "form-title"> SOE-portfolio Sign-In </h1>
-        <form method="post" action ="register.php">
+    <div class="container" id="signIn">
+        <h1 class="form-title">SOE-Portfolio Sign-In</h1>
+        <form method="post" action="register.php">
             <div class="input-group">
-                <i class = "fas fa-envelope"></i>
-                <input type = "email" name = "email" placeholder = "Email" required> <!-- required attribute makes the field mandatory -->
-                <label for = "email"></label> <!-- label for accessibility, associates the label with the input field -->
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" required>
             </div>
-
-            <div class="input-group">
-                <i class = "fas fa-lock"></i>
-                <input type = "password" name = "password" placeholder = "Password" required> <!-- required attribute makes the field mandatory -->
-                <label for = "password"></label> <!-- label for accessibility, associates the label with the input field -->
+            <div class="input-group password-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" class="password-input" placeholder="Password" required>
+                <i class="fas fa-eye toggle-password" style="cursor:pointer; position:absolute; right:15px; top:50%; transform:translateY(-50%);"></i>
             </div>
-
-            <p class = "recover">
-                <a href = "#">Forgot Password?</a> <!-- link for password recovery -->
+            <p class="recover">
+                <a href="recover_psw.php">Forgot Password?</a>
             </p>
-
-            <input type = "submit" class = "btn" value = "Sign-In" name = "signIn"> <!-- submit button to send the form data -->
-
-            <div class = "links">
-                <p>Don't have an account yet?</p> <!-- prompt for users who already have an account -->
-                <button id ="signUpButton">Sign Up</button>
+            <input type="submit" class="btn" value="Sign-In" name="signIn">
+            <div class="links">
+                <p>Don't have an account yet?</p>
+                <button id="signUpButton">Sign Up</button>
             </div>
         </form>
     </div>
-    <script src="script.js"></script> <!-- Link to external JavaScript file for functionality -->
+    <script src="script.js"></script>
 </body>
 </html>
